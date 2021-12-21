@@ -1,8 +1,7 @@
 package fcu.sep.fcushop.controller;
 
-import fcu.sep.fcushop.model.Product;
+
 import fcu.sep.fcushop.model.User;
-import fcu.sep.fcushop.service.ProductService;
 import fcu.sep.fcushop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +26,12 @@ public class UserController {
   }
 
   @GetMapping("/users/{password}")
-  public List<User> getProducts(@PathVariable("password") String password) {
+  public List<User> getUsers(@PathVariable("password") String password) {
     return userManager.getUsers(password);
+  }
+
+  @GetMapping("/users/{account}/{password}")
+  public List<User> getUsers(@PathVariable("account") String account,@PathVariable("password") String password) {
+    return userManager.getUsers(account,password);
   }
 }

@@ -1,12 +1,13 @@
 package fcu.sep.fcushop.service;
 
 import fcu.sep.fcushop.database.Sql2oDbHandler;
+import fcu.sep.fcushop.model.Product;
 import fcu.sep.fcushop.model.User;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.sql2o.Connection;
 
-import java.util.List;
 
 @Service
 public class UserService {
@@ -24,12 +25,26 @@ public class UserService {
   }
 
   public List<User> getUsers(String password) {
+    String account ="bobo";
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
+
       String query = "select ID id, NAME name, ACCOUNT account, PASSWORD password"
-          + " from product where password like :password";
+          + " from user WHERE (Password like:password) ";
 
       return connection.createQuery(query)
-          .addParameter("password", password)
+          .addParameter("password",password )
+          .executeAndFetch(User.class);
+    }
+  }
+  public List<User> getUsers(String account,String password) {
+    try (Connection connection = sql2oDbHandler.getConnector().open()) {
+
+      String query = "select ID id, NAME name, ACCOUNT account, PASSWORD password"
+          + " from user WHERE (Password like:password) AND (Account like:account) ";
+
+      return connection.createQuery(query)
+          .addParameter("account",account )
+          .addParameter("password",password )
           .executeAndFetch(User.class);
     }
   }

@@ -31,9 +31,9 @@ public class User {
 
   private int orderid;
 
+
   public User() {
   }
-
   /**this is.
    *User.
    */
@@ -64,7 +64,7 @@ public class User {
     return orderstate;
   }
 
-  public int setOrderstate(int orderstate) {
+  public void setOrderstate(int orderstate) {
     this.orderstate = orderstate;
   }
 
@@ -72,7 +72,7 @@ public class User {
     return orderhome;
   }
 
-  public String setOrder_home(String orderhome) {
+  public void setOrder_home(String orderhome) {
     this.orderhome = orderhome;
   }
 
@@ -81,7 +81,7 @@ public class User {
     return  orderpay;
   }
 
-  public String setOrderhome(int orderpay) {
+  public void setOrderhome(int orderpay) {
     this. orderpay =  orderpay;
   }
 
@@ -90,7 +90,7 @@ public class User {
     return name;
   }
 
-  public String setName(String name) {
+  public void setName(String name) {
     this.name = name;
   }
 
@@ -98,7 +98,7 @@ public class User {
     return  gmail;
   }
 
-  public String setGmail(String gmail) {
+  public void setGmail(String gmail) {
     this.gmail = gmail;
   }
 
@@ -106,7 +106,7 @@ public class User {
     return  account;
   }
 
-  public String setAccount(String account) {
+  public void setAccount(String account) {
     this.account = account;
   }
 
@@ -114,7 +114,7 @@ public class User {
     return  password;
   }
 
-  public String setPassword(String password) {
+  public void setPassword(String password) {
     this.password = password;
   }
 
@@ -122,7 +122,7 @@ public class User {
     return  home;
   }
 
-  public String setHome(String home) {
+  public void setHome(String home) {
     this.home = home;
   }
 
@@ -130,7 +130,7 @@ public class User {
     return  state;
   }
 
-  public int setState(int state) {
+  public void setState(int state) {
     this.state = state;
   }
 
@@ -138,7 +138,7 @@ public class User {
     return orderid;
   }
 
-  public int setOrderid(int orderid) {
+  public void setOrderid(int orderid) {
     this.orderid = orderid;
   }
 

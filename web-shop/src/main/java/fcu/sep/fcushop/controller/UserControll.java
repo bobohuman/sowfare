@@ -11,20 +11,20 @@ import java.util.List;
 
 @RestController
 public class UserController {
-    @Autowired
-    UserService userManager;
+  @Autowired
+  UserService userManager;
 
-    @GetMapping("/users")
-    public List<User> getUsers() {
-        System.out.println("-------------------------------------------");
-        System.out.println(userManager.getUsers());
-        System.out.println("-------------------------------------------");
+  @GetMapping("/users")
+  public List<User> getUsers() {
+    System.out.println("-------------------------------------------");
+    System.out.println(userManager.getUsers());
+    System.out.println("-------------------------------------------");
 
-        return userManager.getUsers();
-    }
+    return userManager.getUsers();
+  }
 
-    @GetMapping("/users/{account}/{password}")
-    public List<User> getUsers(@PathVariable("account") String account, @PathVariable("password") String password) {
-        return userManager.getUsers(account, password);
-    }
+  @GetMapping("/users/{account}/{password}")
+  public List<User> getUsers(@PathVariable("account") String account, @PathVariable("password") String password) {
+    return userManager.getUsers(account, password);
+  }
 }

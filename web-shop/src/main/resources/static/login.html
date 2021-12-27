@@ -53,10 +53,11 @@ return"";
 }
  $(document).ready(function(){
      const name=getCookie('name');
-     /*if(name!='who'){
+     const iflogin = getCookie('iflogin');
+        if(iflogin=='yes'){
         alert("你已經登入");
-        window.location.replace("http://localhost:8080/");   
-     }*/
+        window.location.replace("http://localhost:8080/");
+        }
     $("#login").click(function(){
         document.cookie = "name=who";
         const account = $('#name').val();
@@ -96,6 +97,7 @@ return"";
           document.cookie = "name="+i.name;
           }
           if(getCookie('name')!='who'){
+           document.cookie = "iflogin=123";
            window.location.replace("http://localhost:8080/");
            }
           else{

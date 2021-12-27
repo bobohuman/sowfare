@@ -58,10 +58,10 @@
 
 $(document).ready(function(){
     $("#login").click(function(){
-        const userName  : $('#username').val();
-        const userMail  : $('#mail').val();
-        const userAccount  : $('#account').val();
-        const userPwd : $('#pwd').val();
+        const userName  = $('#username').val();
+        const userMail  = $('#mail').val();
+        const userAccount  = $('#account').val();
+        const userPwd = $('#pwd').val();
         const url='users/' + userName+'/'+userMail+'/'+userAccount+'/'+userPwd;
         console.log(url);
         document.cookie = "Name="+userName;

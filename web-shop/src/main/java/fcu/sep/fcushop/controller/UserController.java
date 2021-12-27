@@ -25,13 +25,13 @@ public class UserController {
 
   }
 
-  @GetMapping("/users/{password}")
-  public List<User> getUsers(@PathVariable("password") String password) {
-    return userManager.getUsers(password);
-  }
 
   @GetMapping("/users/{account}/{password}")
   public List<User> getUsers(@PathVariable("account") String account,@PathVariable("password") String password) {
     return userManager.getUsers(account,password);
+  }
+  @GetMapping("/login.html/users/{account}")
+  public List<User> getUsers(@PathVariable("account") String account) {
+    return userManager.getUsers(account);
   }
 }

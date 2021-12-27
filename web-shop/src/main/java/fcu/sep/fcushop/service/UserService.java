@@ -24,15 +24,14 @@ public class UserService {
     }
   }
 
-  public List<User> getUsers(String password) {
-    String account ="bobo";
+  public List<User> getUsers(String account) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
 
       String query = "select ID id, NAME name, ACCOUNT account, PASSWORD password"
-          + " from user WHERE (Password like:password) ";
+          + " from user WHERE (account like:account) ";
 
       return connection.createQuery(query)
-          .addParameter("password",password )
+          .addParameter("account",account )
           .executeAndFetch(User.class);
     }
   }

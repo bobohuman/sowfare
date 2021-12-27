@@ -22,7 +22,7 @@ public class Order {
   }
 
   /**this is.
-   *Product.
+   *Order.
    */
   public Order(int id,int productId,int productCount,int productTime) {
     this.id = id;

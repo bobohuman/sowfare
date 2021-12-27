@@ -1,20 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
     <title>Title</title>
+    <style>
+        #myDIV {
+            background: white;
+            animation: mymove 8s infinite;
+        }
+
+        @keyframes mymove {
+            50% {background: grey;}
+        }
+    </style>
 </head>
 <body>
-<h3 align="center">註冊</h3>
-<div align="center">
-<form id="form1" name="form1" method="post" action="" onclick="return false">
+<div id="myDIV" class="container-fluid text-center">
+    <p>&emsp;</p>
+    <h1>L e n d&emsp;t h i n g s , S h a r e&emsp;d r e a m s</h1>
+    <p>以租代買，FCU租借共享平台&emsp;Just come and join us!</p>
+</div>
+<h3 align="center">免費註冊</h3>
+<form align="center">
     <p>
         姓&emsp;&emsp;&emsp;名:
-        <input type="text" name="username" id="username" placeholder="請輸入密碼"/>
+        <input type="text" name="username" id="username" placeholder="請輸入姓名"/>
     </p>
     <p>
         信&emsp;&emsp;&emsp;箱:
-        <input type="text" name="mail" id="mail" placeholder="請輸入密碼"/>
+        <input type="text" name="mail" id="mail" placeholder="請輸入信箱"/>
     </p>
     <p>
         帳&emsp;&emsp;&emsp;號:
@@ -24,7 +45,13 @@
         密&emsp;&emsp;&emsp;碼:
         <input type="password" name="pwd" id="pwd" placeholder="請輸入密碼"/>
     </p>
-    <input type="submit" name="login" id="login" value="登入">
+    <tr>
+        <td><input type="submit" name="login" id="login" value="確認"></td>
+        <td>&emsp;</td>
+        <td>&emsp;</td>
+        <td><a href="/index.html">來去逛逛</a></td>
+    </tr>
+
     <!--<table align="center">
         <tr>
             <td><label>名稱：</label></td>
@@ -52,7 +79,7 @@
         </tr>
     </table>-->
 </form>
-</div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 

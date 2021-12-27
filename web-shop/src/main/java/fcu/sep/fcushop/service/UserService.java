@@ -15,36 +15,18 @@ public class UserService {
   private Sql2oDbHandler sql2oDbHandler;
 
 
-  public List<User> getUsers() {
+  public String addUsers(int id,String name,String gmail,String account,String password) {
+    String returnMessage;
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = "select ID id, NAME name,  PASSWORD password"
-          + " from USER ";
-      return connection.createQuery(query).executeAndFetch(User.class);
+      String query=String.format("INSERT INTO `fcu_shop`.`user` (`id`, `name`, `gmail`, `account`, `password`) VALUES (%d,'%s','%s',%s,'%s');", id,name,gmail,account,password);
+      System.out.println(query);
+      connection.createQuery(query, true).executeUpdate().getKey();
+      returnMessage = query + "寫入成功";
+
+    } catch (Exception ex)// 除了SQLException以外之錯誤
+    {
+      returnMessage = "錯誤訊息:" + ex.getMessage();
     }
-  }
-
-  public List<User> getUsers(String password) {
-    String account ="bobo";
-    try (Connection connection = sql2oDbHandler.getConnector().open()) {
-
-      String query = "select ID id, NAME name, ACCOUNT account, PASSWORD password"
-          + " from user WHERE (Password like:password) ";
-
-      return connection.createQuery(query)
-          .addParameter("password",password )
-          .executeAndFetch(User.class);
-    }
-  }
-  public List<User> getUsers(String account,String password) {
-    try (Connection connection = sql2oDbHandler.getConnector().open()) {
-
-      String query = "select ID id, NAME name, ACCOUNT account, PASSWORD password"
-          + " from user WHERE (Password like:password) AND (Account like:account) ";
-
-      return connection.createQuery(query)
-          .addParameter("account",account )
-          .addParameter("password",password )
-          .executeAndFetch(User.class);
-    }
+    return returnMessage;
   }
 }

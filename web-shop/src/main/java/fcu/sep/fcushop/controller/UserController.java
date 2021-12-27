@@ -1,2 +1,4 @@
-package fcu.sep.fcushop.controller;public class UserController {
+package fcu.sep.fcushop.controller;
+
+public class UserController {
 }

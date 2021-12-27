@@ -1,2 +1,4 @@
-package fcu.sep.fcushop.service;public class UserService {
+package fcu.sep.fcushop.service;
+
+public class UserService {
 }

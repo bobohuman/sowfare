@@ -1,7 +1,6 @@
 package fcu.sep.fcushop.service;
 
 import fcu.sep.fcushop.database.Sql2oDbHandler;
-import fcu.sep.fcushop.model.Product;
 import fcu.sep.fcushop.model.User;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

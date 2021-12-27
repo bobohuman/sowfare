@@ -64,6 +64,7 @@
           <button class="btn btn-outline-success" type="submit">Search</button>
       </form>-->
     </div>
+      <div id="welcome"></div>
   </div>
 </nav>
 
@@ -212,6 +213,8 @@ return"";
           for(let i of user){
           document.cookie = "id="+i.id;
           document.cookie = "name="+i.name;
+          let html='<h5 class="card-title">welcome   '+ i.name + '</h5>'
+          $('#welcome').append(html);
           }
           delCookie("account");
           delCookie("password");

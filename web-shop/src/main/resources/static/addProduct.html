@@ -114,7 +114,7 @@ function addProduct(){
       if (productName.trim() === '') {
         addProducts('add');
       } else {
-        const url='add/' + productName+'/'+productUrl+'/'+productMoney+'/'+productDescription
+        const url='add/' + productName+'/'+productUrl+'/'+productMoney+'/'+productDescription;
         console.log(url);
         addProducts(url);
         location.href='/';

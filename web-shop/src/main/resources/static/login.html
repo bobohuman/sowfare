@@ -54,6 +54,9 @@
             alert("你尚未填寫密碼");
             eval("document.form1['pwd'].focus()");
         }else{
+            const url='users/'+account+'/'+password;
+            console.log(url);
+            addProducts(url);
             document.cookie = "account="+account;
             document.cookie = "password="+password;
             window.location.href="/";

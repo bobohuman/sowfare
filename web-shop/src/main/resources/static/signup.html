@@ -46,25 +46,6 @@
         </tr>
     </table>
 </form>
-<script>
-    function addProduct(){
-        const productName  = document.getElementById("username").value;
-        const productUrl  = document.getElementById("password").value;
-        const productMoney  = document.getElementById("productMoney").value;
-        const productDescription  = document.getElementById("productDescription").value;
 
-        if (productName.trim() === '') {
-            addProducts('add');
-        } else {
-            const url='add/' + productName+'/'+productUrl+'/'+productMoney+'/'+productDescription;
-            console.log(url);
-            addProducts(url);
-            location.href='/';
-            //可改用json或list格式回傳
-        }
-        console.log("G");
-        return 0;
-    }
-</script>
 </body>
 </html>

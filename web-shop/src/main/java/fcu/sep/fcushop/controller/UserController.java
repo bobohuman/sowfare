@@ -16,7 +16,7 @@ public class UserController {
   @GetMapping("/users")
   public List<User> getUsers() {
     System.out.println("-------------------------------------------");
-    System.out.println( userManager.getUsers());
+    System.out.println(userManager.getUsers());
     System.out.println("-------------------------------------------");
 
     return userManager.getUsers();
@@ -29,12 +29,13 @@ public class UserController {
   }
 
   @GetMapping("/users/{account}/{password}")
-  public List<User> getUsers(@PathVariable("account") String account,@PathVariable("password") String password) {
-    return userManager.getUsers(account,password);
+  public List<User> getUsers(@PathVariable("account") String account, @PathVariable("password") String password) {
+    return userManager.getUsers(account, password);
   }
 
-  /*@GetMapping("/users/{name}//{password}")
-  public List<User> getUsers(@PathVariable("account") String account,@PathVariable("password") String password) {
-    return userManager.getUsers(account,password);
-  }*/
+  @GetMapping("/users/{name}/{gmail}/{account}/{password}")
+  public String getUsers(@PathVariable("name") String name, @PathVariable("gmail") String gmail,
+      @PathVariable("account") String account, @PathVariable("password") String password) {
+    return userManager.getUsers(name,gmail,account,password);
+  }
 }

@@ -5,13 +5,31 @@
     <title>Title</title>
 </head>
 <body>
-<form action="#" method="">
-    <h3 align="center">註冊</h3>
-    <a id="position"></a>
-    <table align="center">
+<h3 align="center">註冊</h3>
+<a id="position"></a>
+<div align="center">
+<form id="form1" name="form1" method="post" action="" onclick="return false">
+    <p>
+        名&emsp;&emsp;&emsp;字:
+        <input type="password" name="username" id="username" placeholder="請輸入密碼"/>
+    </p>
+    <p>
+        信&emsp;&emsp;&emsp;箱:
+        <input type="password" name="mail" id="mail" placeholder="請輸入密碼"/>
+    </p>
+    <p>
+        帳號:
+        <input type="text" name="account" id="account" placeholder="請輸入帳號" />
+    </p>
+    <p>
+        密&emsp;&emsp;&emsp;碼:
+        <input type="password" name="pwd" id="pwd" placeholder="請輸入密碼"/>
+    </p>
+    <input type="submit" name="login" id="login" value="登入">
+    <!--<table align="center">
         <tr>
             <td><label>名稱：</label></td>
-            <td><input type="rdt" name="uname" id="username" placeholder="請輸入姓名" /><br></td>
+            <td><input type="rdt" name="username" id="username" placeholder="請輸入姓名" /><br></td>
             <td></td>
         </tr>
         <tr>
@@ -29,16 +47,32 @@
         </tr>
 
         <tr>
-            <td><input type="submit" value="註冊"></td>
+            <td><input type="submit" id="sub" value="註冊"></td>
             <td></td>
             <td></td>
         </tr>
-    </table>
+    </table>-->
 </form>
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 
+$(document).ready(function(){
+$("#login").click(function(){
+    const userName  = $('#username').val();
+    const userMail  = $('#mail').val();
+    const userAccount  = $('#account').val();
+    const userPwd  =$('#pwd').val();
+    const url='users/' + userName+'/'+userMail+'/'+userAccount+'/'+userPwd;
+    console.log(url);
+    document.cookie = "Name="+userName;
+    document.cookie = "UserMail="+userMail;
+    addProducts(url);
+    
+})
+})
 
+/*
 function addUser(){
       const userName  = document.getElementById("username").value;
       const userMail  = document.getElementById("mail").value;
@@ -58,7 +92,7 @@ function addUser(){
       console.log("G");
       return 0;
     }
-
+*/
     function addProducts(targetUrl) {
       // Using the core $.ajax() method
       $.ajax({

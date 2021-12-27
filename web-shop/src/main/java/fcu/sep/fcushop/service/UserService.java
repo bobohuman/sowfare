@@ -45,10 +45,10 @@ public class UserService {
           .executeAndFetch(User.class);
     }
   }
-  public String addUsers(int id,String name,String gmail,String account,String password) {
+  public String getUsers(String name,String gmail,String account,String password) {
     String returnMessage;
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query=String.format("INSERT INTO `fcu_shop`.`user` (`id`, `name`, `gmail`, `account`, `password`) VALUES (%d,'%s','%s',%s,'%s');", id,name,gmail,account,password);
+      String query=String.format("INSERT INTO `fcu_shop`.`user` ( `name`, `gmail`, `account`, `password`) VALUES (%s,'%s',%s,'%s');", name,gmail,account,password);
       System.out.println(query);
       connection.createQuery(query, true).executeUpdate().getKey();
       returnMessage = query + "寫入成功";

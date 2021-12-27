@@ -32,4 +32,9 @@ public class UserController {
   public List<User> getUsers(@PathVariable("account") String account,@PathVariable("password") String password) {
     return userManager.getUsers(account,password);
   }
+
+  /*@GetMapping("/users/{name}//{password}")
+  public List<User> getUsers(@PathVariable("account") String account,@PathVariable("password") String password) {
+    return userManager.getUsers(account,password);
+  }*/
 }

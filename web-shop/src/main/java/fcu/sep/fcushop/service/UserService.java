@@ -14,7 +14,37 @@ public class UserService {
   @Autowired
   private Sql2oDbHandler sql2oDbHandler;
 
+  public List<User> getUsers() {
+    try (Connection connection = sql2oDbHandler.getConnector().open()) {
+      String query = "select ID id, NAME name,  PASSWORD password"
+          + " from USER ";
+      return connection.createQuery(query).executeAndFetch(User.class);
+    }
+  }
 
+  public List<User> getUsers(String account) {
+    try (Connection connection = sql2oDbHandler.getConnector().open()) {
+
+      String query = "select ID id, NAME name, ACCOUNT account, PASSWORD password"
+          + " from user WHERE (account like:account) ";
+
+      return connection.createQuery(query)
+          .addParameter("account",account )
+          .executeAndFetch(User.class);
+    }
+  }
+  public List<User> getUsers(String account,String password) {
+    try (Connection connection = sql2oDbHandler.getConnector().open()) {
+
+      String query = "select ID id, NAME name, ACCOUNT account, PASSWORD password"
+          + " from user WHERE (Password like:password) AND (Account like:account) ";
+
+      return connection.createQuery(query)
+          .addParameter("account",account )
+          .addParameter("password",password )
+          .executeAndFetch(User.class);
+    }
+  }
   public String addUsers(int id,String name,String gmail,String account,String password) {
     String returnMessage;
     try (Connection connection = sql2oDbHandler.getConnector().open()) {

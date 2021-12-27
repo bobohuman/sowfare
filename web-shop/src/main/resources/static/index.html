@@ -23,8 +23,8 @@
 
 
         <form class="d-flex" >
-          <input class="form-control me-2" id="my_word" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit" onclick="Search()">Search</button>
+          <input type="text" class="form-control" placeholder="name" aria-label="product name" aria-describedby="searchProduct" id="productKeyword">
+          <button class="btn btn-outline-secondary" type="button" id="searchProduct">search</button>
         </form>
 
 
@@ -89,6 +89,7 @@
 -->
 
 <script>
+  
   $( document ).ready( function() {
     console.log( "ready!" );
     emptyProducts();

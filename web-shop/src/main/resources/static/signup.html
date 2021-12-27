@@ -10,27 +10,26 @@
     <a id="position"></a>
     <table align="center">
         <tr>
-            <td><label for="username">姓名：</label></td>
-            <td><input type="rdt" id="username" placeholder="請輸入姓名" /><br></td>
+            <td><label>名稱：</label></td>
+            <td><input type="rdt" name="uname" id="username" placeholder="請輸入姓名" /><br></td>
             <td></td>
         </tr>
         <tr>
-            <td><label for="username">信箱：</label></td>
-            <td><input type="rdt" id="gmail" placeholder="請輸入信箱" /><br></td>
-            <td></td>
+            <td><label>信&nbsp;&nbsp;&nbsp;箱：</label></td>
+            <td><input type="rdt" name="mail" id="mail" placeholder="請輸入信箱" ></td>
         </tr>
         <tr>
-            <td><label for="pwd">帳&nbsp;&nbsp;&nbsp;號：</label></td>
-            <td><input type="password" id="account" placeholder="請輸入帳號"/></td>
-            <td></td>
+            <td><label>帳&nbsp;&nbsp;&nbsp;號：</label></td>
+            <td><input type="rdt" name="account" id="account" placeholder="請輸入帳號" ></td>
         </tr>
         <tr>
-            <td><label for="pwd">密&nbsp;&nbsp;&nbsp;碼：</label></td>
-            <td><input type="password" id="pwd" placeholder="請輸入密碼"/></td>
+            <td><label>密&nbsp;&nbsp;&nbsp;碼：</label></td>
+            <td><input type="password" name="password" id="pwd" placeholder="請輸入密碼"/></td>
             <td></td>
         </tr>
+
         <tr>
-            <td><input type="submit" value="註冊" onclick="addUser()"></td>
+            <td><input type="submit" value="註冊"></td>
             <td></td>
             <td></td>
         </tr>
@@ -38,16 +37,19 @@
 </form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-    function addUser(){
+
+
+function addUser(){
       const userName  = document.getElementById("username").value;
-      const userGmail  = document.getElementById("gmail").value;
+      const userMail  = document.getElementById("mail").value;
       const userAccount  = document.getElementById("account").value;
       const userPwd  = document.getElementById("pwd").value;
 
+
       if (userName.trim() === '') {
-        addUser('add');
+        addUsers('add');
       } else {
-        const url='add/' + userName+'/'+userGmail+'/'+userAccount+'/'+userPwd
+        const url='add/' + userName+'/'+userMail+'/'+userAccount+'/'+userPwd
         console.log(url);
         addProducts(url);
         location.href='/';
@@ -57,7 +59,7 @@
       return 0;
     }
 
-    function addUser(targetUrl) {
+    function addProducts(targetUrl) {
       // Using the core $.ajax() method
       $.ajax({
           // The URL for the request
@@ -84,6 +86,7 @@
           console.log( "The request is complete!" );
         });
     }
+
 </script>
 </body>
 </html>

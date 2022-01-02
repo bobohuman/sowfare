@@ -20,7 +20,7 @@ public class OrderService {
   public List<Order> getOrders() {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "select id id ,productId productId,productCount productCount,productTime productTime"
-          + " FROM `fcu_shop`.`order`; ";
+          + " FROM `lend_things`.`order`; ";
       return connection.createQuery(query).executeAndFetch(Order.class);
     }
   }
@@ -29,7 +29,7 @@ public class OrderService {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
 
       String query = "select ID id,productId productId,productCount productCount,productTime productTime"
-          + " from `fcu_shop`.`order` WHERE (`id`="+ id +");";
+          + " from `lend_things`.`order` WHERE (`id`="+ id +");";
 
       return connection.createQuery(query)
           .executeAndFetch(Order.class);

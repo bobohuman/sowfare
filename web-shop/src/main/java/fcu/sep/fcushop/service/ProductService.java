@@ -38,20 +38,20 @@ public class ProductService {
   }
   public Object getProductsCount() {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = "SELECT COUNT(*)"+" FROM `fcu_shop`.`product`;";
+      String query = "SELECT COUNT(*)"+" FROM `lend_things`.`product`;";
       return connection.createQuery(query).executeScalar();
     }
   }
   public Object getMaxID() {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = "SELECT max(ID)"+" FROM `fcu_shop`.`product`;";
+      String query = "SELECT max(ID)"+" FROM `lend_things`.`product`;";
       return connection.createQuery(query).executeScalar();
     }
   }
   public String addProducts(int ID,String NAME,String IMAGE_URL,int PRICE,String DESCRIPTION) {
     String returnMessage;
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query=String.format("INSERT INTO `fcu_shop`.`product` (`ID`, `NAME`, `IMAGE_URL`, `PRICE`, `DESCRIPTION`) VALUES (%d,'%s','%s',%d,'%s');", ID,NAME,IMAGE_URL,PRICE,DESCRIPTION);
+      String query=String.format("INSERT INTO `lend_things`.`product` (`ID`, `NAME`, `IMAGE_URL`, `PRICE`, `DESCRIPTION`) VALUES (%d,'%s','%s',%d,'%s');", ID,NAME,IMAGE_URL,PRICE,DESCRIPTION);
       System.out.println(query);
       connection.createQuery(query, true).executeUpdate().getKey();
       returnMessage = query + "寫入成功";
@@ -65,7 +65,7 @@ public class ProductService {
   public String deleteProducts(int ID) {
     String returnMessage;
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query=String.format("DELETE FROM `fcu_shop`.`product` WHERE (`ID` = '%d');", ID);
+      String query=String.format("DELETE FROM `lend_things`.`product` WHERE (`ID` = '%d');", ID);
       System.out.println(query);
       connection.createQuery(query, true).executeUpdate().getKey();
       returnMessage = query + "寫入成功";
@@ -78,7 +78,7 @@ public class ProductService {
   public String updateProducts(int ID,String NAME,String IMAGE_URL,int PRICE,String DESCRIPTION) {
     String returnMessage;
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query=String.format("UPDATE `fcu_shop`.`product` SET `NAME` = '%s', `IMAGE_URL` = '%s', `PRICE` = '%d', `DESCRIPTION` = '%s' WHERE (`ID` = '%d'); ", NAME,IMAGE_URL,PRICE,DESCRIPTION,ID);
+      String query=String.format("UPDATE `lend_things`.`product` SET `NAME` = '%s', `IMAGE_URL` = '%s', `PRICE` = '%d', `DESCRIPTION` = '%s' WHERE (`ID` = '%d'); ", NAME,IMAGE_URL,PRICE,DESCRIPTION,ID);
       System.out.println(query);
       connection.createQuery(query, true).executeUpdate().getKey();
       returnMessage = query + "寫入成功";

@@ -114,7 +114,6 @@ return decodeURIComponent(arr[1]);// 對cookie值解碼
 return"";
 }
   $( document ).ready( function() {
-
     console.log( "ready!" );
     const id = getCookie('id');
     const name = getCookie('name');
@@ -158,13 +157,17 @@ return"";
         html += '<h5 class="card-title">' + product.name + '</h5>';
         html += '<p class="card-text">'+'ID:' + product.id + '</p>';
         html += '<p class="card-text">' + product.description + '</p>';
-        html += '<a href="#" class="btn btn-primary">' + product.price + '</a>';
+        html += '<a href="#" class="btn btn-primary" onclick="handler(';
+        html +=product.id+'); return false;">' + product.price + '</a>';
         html += '</div>';
         html += '</div>';
         $('#productList').append(html);
       }
     }
-
+     function handler(productid){
+      document.cookie = 'productid='+productid+';path=./shop';
+      window.location.replace("http://localhost:8080/shop/index.html");
+     }
     function getProducts(targetUrl) {
       // Using the core $.ajax() method
       $.ajax({

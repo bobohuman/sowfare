@@ -30,6 +30,11 @@ public class ProductController {
     return productManager.getProducts(keyword);
   }
 
+  @GetMapping("/products/shop/{id}")
+  public List<Product> getProducts(@PathVariable("id") int id) {
+    return productManager.getProducts(id);
+  }
+
 
   public int getProductsCount() {
     return Integer.parseInt(String.valueOf(productManager.getProductsCount()));
@@ -54,6 +59,9 @@ public class ProductController {
     productManager.deleteProducts(ID);
     return productManager.getProducts();
   }
+
+
+
 }
 
 

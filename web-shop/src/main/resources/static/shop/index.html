@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Page</title>
+<meta name="generator" content="WYSIWYG Web Builder 16 - http://www.wysiwygwebbuilder.com">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="base/jquery-ui.min.css" rel="stylesheet">
+<link href="Untitled1.css" rel="stylesheet">
+<link href="index.css" rel="stylesheet">
+<script src="jquery-1.12.4.min.js"></script>
+<script src="util.min.js"></script>
+<script src="carousel.min.js"></script>
+<script src="jquery-ui.min.js"></script>
+<script>
+$(document).ready(function()
+{
+   $("#Carousel1").bootstrapcarousel({interval:3000, pause: false});
+   $("#Spinner1").spinner(
+   {
+      min: 1,
+      max: 100,
+      step: 1
+   });
+});
+</script>
+</head>
+<body>
+
+<div id="wb_carouselGrid">
+<div id="carouselGrid">
+<div class="row">
+<div class="col-1" id="picture">
+<!--
+<div id="wb_Carousel1">
+<div id="Carousel1" class="carousel slide" data-ride="carousel">
+<ol class="carousel-indicators">
+<li data-target="#Carousel1" data-slide-to="0" class="active"></li>
+<li data-target="#Carousel1" data-slide-to="1"></li>
+<li data-target="#Carousel1" data-slide-to="2"></li>
+</ol>
+<div class="carousel-inner">
+<div class="carousel-item frame-1 active">
+<div class="carousel-innerframe">
+</div>
+</div>
+<div class="carousel-item frame-2">
+<div class="carousel-innerframe">
+</div>
+</div>
+<div class="carousel-item frame-3">
+<div class="carousel-innerframe">
+</div>
+</div>
+</div>
+
+<a class="carousel-item-left carousel-control" href="#Carousel1" role="button" data-slide="prev">
+<span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span>
+</a>
+<a class="carousel-item-right carousel-control" href="#Carousel1" role="button" data-slide="next">
+<span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span>
+</a>
+</div>
+</div>
+-->
+</div>
+<div class="col-2">
+<div id="wb_Text4">
+</div>
+<div id="wb_LayoutGrid2">
+<div id="LayoutGrid2">
+<div class="row">
+<div class="col-1">
+<div id="wb_Text2">
+<span style="color:#000000;font-family:微軟正黑體;font-size:13px;">可租</span>
+</div>
+</div>
+<div class="col-2">
+<div id="wb_Text3">
+<span style="color:#000000;font-family:Calibri;font-size:13px;">&quot;</span><span style="color:#000000;font-family:微軟正黑體;font-size:13px;">天數</span><span style="color:#000000;font-family:Calibri;font-size:13px;">&quot;</span>
+</div>
+</div>
+<div class="col-3">
+</div>
+</div>
+</div>
+</div>
+<div id="wb_LayoutGrid3">
+<div id="LayoutGrid3">
+<div class="row">
+<div class="col-1">
+<div id="wb_Text1">
+<span style="color:#000000;font-family:微軟正黑體;font-size:13px;">數量</span>
+</div>
+</div>
+<div class="col-2">
+<div id="wb_Spinner1">
+<input type="text" id="Spinner1" name="Spinner1" value="1">
+</div>
+</div>
+<div class="col-3">
+</div>
+</div>
+</div>
+</div>
+<input type="submit" id="Button1" name="" value="加入購物車">
+</div>
+</div>
+</div>
+</div>
+<div id="wb_BlockQuote">
+<div id="BlockQuote-overlay"></div>
+<div id="BlockQuote">
+<div class="row">
+<div class="col-1">
+<div id="wb_Quote">
+<span style="color:#000000;font-family:微軟正黑體;font-size:16px;"><em>商品介紹</em></span><span style="color:#000000;font-family:¡PL?n??????;font-size:16px;"><em><br></em></span><span style="color:#000000;font-family:微軟正黑體;font-size:16px;"><em>因為我不知道要打甚麼</em></span><span style="color:#000000;font-family:·L³n¥¿¶ÂÅé;font-size:16px;"><em><br></em></span><span style="color:#000000;font-family:微軟正黑體;font-size:16px;"><em>所以就大概打一點東西</em></span><span style="color:#000000;font-family:·L³n¥¿¶ÂÅé;font-size:16px;"><em><br></em></span><span style="color:#000000;font-family:微軟正黑體;font-size:16px;"><em>想到甚麼打甚麼</em></span><span style="color:#000000;font-family:·L³n¥¿¶ÂÅé;font-size:16px;"><em> <br></em></span><span style="color:#000000;font-family:微軟正黑體;font-size:16px;"><em>然後祝我微處理機補考加油</em></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+function setCookie(name){
+  let arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
+  if (arr != null) return unescape(arr[2]);
+  return null;
+}
+//刪除cookie
+function delCookie(name){
+  var exp = new Date();
+  exp.setTime(exp.getTime() - 1);
+  var cval = setCookie(name);
+  if (cval != null)
+    document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString()+";path=/";
+}
+function getCookie(name){
+var cookies = document.cookie;
+var list = cookies.split("; ");// 解析出名/值對列表
+for(var i =0; i < list.length; i++){
+var arr = list[i].split("=");// 解析出名和值
+if(arr[0]== name)
+return decodeURIComponent(arr[1]);// 對cookie值解碼
+}
+return"";
+}
+  $( document ).ready( function() {
+    console.log( "ready!" );
+    const productid = getCookie('productid');
+    const url='../products/shop/'+productid;
+    console.log(url);
+    getProducts(url);
+  });
+
+    function addProducts(products) {
+      for ( let product of products ) {
+        let html = '<h1>'+product.name+'</h1>';
+        $('#wb_Text4').append(html);
+        html ='<img src="' + product.imageUrl + '" width="450" height="500" alt="' + product.name + '">';
+        $('#picture').append(html);
+        /*html += '<img src="' + product.imageUrl + '" class="card-img-top" alt="' + product.name + '">';
+        html += '<div class="card-body">';
+        html += '<h5 class="card-title">' + product.name + '</h5>';
+        html += '<p class="card-text">'+'ID:' + product.id + '</p>';
+        html += '<p class="card-text">' + product.description + '</p>';
+        html += '<a href="#" class="btn btn-primary" onclick="handler(';
+        html +=product.id+'); return false;">' + product.price + '</a>';
+        html += '</div>';
+        html += '</div>';
+        */
+      }
+    }
+    function getProducts(targetUrl) {
+      // Using the core $.ajax() method
+      $.ajax({
+          // The URL for the request
+          url: targetUrl,
+
+          // Whether this is a POST or GET request
+          type: "GET",
+
+          // The type of data we expect back
+          dataType : "json",
+      })
+        // Code to run if the request succeeds (is done);
+        // The response is passed to the function
+        .done(function( json ) {
+          let products = json;
+          addProducts(products);
+        })
+        // Code to run if the request fails; the raw request and
+        // status codes are passed to the function
+        .fail(function( xhr, status, errorThrown ) {
+          console.log( "Sorry, there was a problem!" );
+          console.log( "Error: " + errorThrown );
+          console.log( "Status: " + status );
+          console.dir( xhr );
+        })
+        // Code to run regardless of success or failure;
+        .always(function( xhr, status ) {
+          console.log( "The request is complete!" );
+        });
+    }
+
+</script>
+</body>
+</html>

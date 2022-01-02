@@ -8,8 +8,50 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>Title</title>
+
+
+<title>Title</title>
+<style>
+        #myDIV {
+            background: white;
+            animation: mymove 8s infinite;
+        }
+
+        @keyframes mymove {
+            50% {background: grey;}
+        }
+    </style>
 </head>
 <body>
+<div id="myDIV" class="container-fluid text-center">
+    <p>&emsp;</p>
+    <h1>L e n d&emsp;t h i n g s , S h a r e&emsp;d r e a m s</h1>
+    <p>Just come and join us!</p>
+</div>
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Modal Heading</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                Modal body..
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
     <h3 align="center">登入</h3>
     <div align="center">
 <form id="form1" name="form1" method="post" action="" onclick="return false">
@@ -22,8 +64,11 @@
         <input type="password" name="pwd" id="pwd" placeholder="請輸入密碼"/>
         </p>
         <input type="submit" name="login" id="login" value="登入">
-</form>
+        <td>&emsp;</td>
+        <td>&emsp;</td>
         <a href="/signup.html"><input type="button" value="註冊" ></a>
+</form>
+
     </div>
 <div id="userlist">
 </div>
@@ -41,10 +86,25 @@
 -->
 
 <script>
-
+function getCookie(name){
+var cookies = document.cookie;
+var list = cookies.split("; ");// 解析出名/值對列表
+for(var i =0; i < list.length; i++){
+var arr = list[i].split("=");// 解析出名和值
+if(arr[0]== name)
+return decodeURIComponent(arr[1]);// 對cookie值解碼
+}
+return"";
+}
  $(document).ready(function(){
-
+     const name=getCookie('name');
+     const iflogin = getCookie('iflogin');
+        if(iflogin=='yes'){
+        alert("你已經登入");
+        window.location.replace("http://localhost:8080/");
+        }
     $("#login").click(function(){
+        document.cookie = "name=who";
         const account = $('#name').val();
         const password = $('#pwd').val();
         if($("#name").val()==""){
@@ -56,12 +116,53 @@
         }else{
             const url='users/'+account+'/'+password;
             console.log(url);
-            document.cookie = "account="+account;
-            document.cookie = "password="+password;
-            window.location.href="/";
+            getUsers(url);
         }
     })
  })
+
+ function getUsers(targetUrl){
+      // Using the core $.ajax() method
+      $.ajax({
+          // The URL for the request
+          url: targetUrl,
+
+          // Whether this is a POST or GET request
+          type: "GET",
+
+          // The type of data we expect back
+          dataType : "json",
+      })
+        // Code to run if the request succeeds (is done);
+        // The response is passed to the function
+        .done(function( json ){
+          let user = json;
+          for(let i of user){
+          document.cookie = "id="+i.id;
+          document.cookie = "name="+i.name;
+          }
+          if(getCookie('name')!='who'){
+           document.cookie = "iflogin=123";
+           window.location.replace("http://localhost:8080/");
+           }
+          else{
+          alert("找不到使用者");
+          }
+
+        })
+        // Code to run if the request fails; the raw request and
+        // status codes are passed to the function
+        .fail(function( xhr, status, errorThrown ) {
+          console.log( "Sorry, there was a problem!" );
+          console.log( "Error: " + errorThrown );
+          console.log( "Status: " + status );
+          console.dir( xhr );
+        })
+        // Code to run regardless of success or failure;
+        .always(function( xhr, status ) {
+          console.log( "The request is complete!" );
+        });
+    }
 
 
 </script>

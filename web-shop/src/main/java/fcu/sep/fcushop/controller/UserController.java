@@ -34,4 +34,9 @@ public class UserController {
   public List<User> getUsers(@PathVariable("account") String account) {
     return userManager.getUsers(account);
   }
+  @GetMapping("/users/{name}/{gmail}/{account}/{password}")
+  public String getUsers(@PathVariable("name") String name, @PathVariable("gmail") String gmail,
+                         @PathVariable("account") String account, @PathVariable("password") String password) {
+    return userManager.getUsers(name,gmail,account,password);
+  }
 }

@@ -22,6 +22,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 
+
             <ul class="navbar-nav mb-2 mb-lg-0 d-flex">
                 <li class="nav-item">
                     <a class="nav-link" href="/login.html">登入/註冊</a>
@@ -65,61 +66,80 @@
 <div class="container">
     <h1 class="mt-3">My Shop</h1>
 
-    <div class="input-group mb-3 mt-5">
-        <input type="text" class="form-control" placeholder="商品名稱" aria-label="product name" aria-describedby="searchProduct" id="productName">
+    <div class="column" id="orderList">
     </div>
-
-
-    <div class="mt-3 row" id="productList">
-    </div>
-
-
-
-
-    <label form="basic-url" class="form-label"></label>
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon3">https://i.imgur.com/</span>
-        <input type="text" class="form-control" placeholder="圖片網址" id="productUrl" aria-describedby="basic-addon3">
-    </div>
-
-    <div class="input-group mb-3">
-        <span class="input-group-text">$</span>
-        <input type="text" class="form-control" placeholder="商品金額" id="productMoney" aria-label="Amount (to the nearest dollar)">
-        <span class="input-group-text">.00 TW</span>
-    </div>
-
-
-    <div class="input-group">
-        <span class="input-group-text">Description</span>
-        <input type="text" class="form-control" placeholder="Description" id="productDescription" aria-describedby="basic-addon3">
-    </div>
-    <button class="btn btn-outline-secondary" type="button" id="addProduct" onclick="addProduct()">新增商品</button>
-
 </div>
+
+<!-- Optional JavaScript; choose one of the two! -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+-->
+
 <script>
+function setCookie(name){
+  let arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
+  if (arr != null) return unescape(arr[2]);
+  return null;
+}
+//刪除cookie
+function delCookie(name){
+  var exp = new Date();
+  exp.setTime(exp.getTime() - 1);
+  var cval = setCookie(name);
+  if (cval != null)
+    document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString()+";path=/";
+}
+function getCookie(name){
+var cookies = document.cookie;
+var list = cookies.split("; ");// 解析出名/值對列表
+for(var i =0; i < list.length; i++){
+var arr = list[i].split("=");// 解析出名和值
+if(arr[0]== name)
+return decodeURIComponent(arr[1]);// 對cookie值解碼
+}
+return"";
+}
+  $( document ).ready( function() {
+    console.log( "ready!" );
+    const id = getCookie('id');
+    const name = getCookie('name');
+    const iflogin = getCookie('iflogin');
+    let html= '<h5> welcome   ' + name + '</h5>';
+    $('#welcome').append(html);
+    emptyOrders();
+    getOrder('orders/'+id);
+  });
 
 
-function addProduct(){
-      const productName  = document.getElementById("productName").value;
-      const productUrl  = document.getElementById("productUrl").value;
-      const productMoney  = document.getElementById("productMoney").value;
-      const productDescription  = document.getElementById("productDescription").value;
-
-      if (productName.trim() === '') {
-        addProducts('add');
-      } else {
-        const url='add/' + productName+'/'+productUrl+'/'+productMoney+'/'+productDescription;
-        console.log(url);
-        addProducts(url);
-        location.href='/';
-        //可改用json或list格式回傳
-      }
-      console.log("G");
-      return 0;
+    function emptyOrders() {
+      $('#orderList').empty();
     }
 
-    function addProducts(targetUrl) {
+    function addProducts(products) {
+      for ( let product of products ) {
+        let html = '<div class="row">';
+        //html += '<img src="' + product.imageUrl + '" class="card-img-top" alt="' + product.name + '">';
+        html += '<div class="card-body">';
+        html += '<h5 class="card-title">訂單ID' + product.id + '</h5>';
+        html += '<p class="card-text">商品ID:' + product.productId + '</p>';
+        html += '<p class="card-text">商品數量:' + product.productCount + '</p>';
+        html += '<p class="card-text">商品租借時長:' + product.productTime + '/天</p>';
+        html += '</div>';
+        html += '</div>';
+        $('#orderList').append(html);
+      }
+    }
+
+    function getOrder(targetUrl) {
       // Using the core $.ajax() method
       $.ajax({
           // The URL for the request
@@ -127,12 +147,16 @@ function addProduct(){
 
           // Whether this is a POST or GET request
           type: "GET",
-          //盡量用post
 
           // The type of data we expect back
           dataType : "json",
       })
-
+        // Code to run if the request succeeds (is done);
+        // The response is passed to the function
+        .done(function( json ) {
+          let products = json;
+          addProducts(products);
+        })
         // Code to run if the request fails; the raw request and
         // status codes are passed to the function
         .fail(function( xhr, status, errorThrown ) {
@@ -148,8 +172,5 @@ function addProduct(){
     }
 
 </script>
-
 </body>
-
-
 </html>

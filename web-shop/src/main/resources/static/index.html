@@ -52,9 +52,9 @@
                   類別
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="/addProduct.html">服飾</a></li>
-                  <li><a class="dropdown-item" href="/updateProduct.html">美食</a></li>
-                  <li><a class="dropdown-item" href="/updateProduct.html">日常</a></li>
+                  <li><a class="dropdown-item" onclick="go1()">露營</a></li>
+                  <li><a class="dropdown-item" onclick="go2()">美食</a></li>
+                  <li><a class="dropdown-item" onclick="go3()">日常</a></li>
               </ul>
           </li>
       </ul>
@@ -133,7 +133,18 @@ return"";
         emptyProducts();
       }
     });
-
+    function go1(){
+        getProducts('products/state/1');
+        emptyProducts();
+    }
+    function go2(){
+        getProducts('products/state/2');
+        emptyProducts();
+    }
+    function go3(){
+        getProducts('products/state/3');
+        emptyProducts();
+    }
 
     $('#deleteProduct').click(function() {
       const keyword = $('#productID').val();

@@ -20,18 +20,21 @@ public class Product {
 
   private String description;
 
+  private int state;
+
   public Product() {
   }
 
   /**this is.
    *Product.
    */
-  public Product(long id, String name, String imageUrl, int price, String description) {
+  public Product(long id, String name, String imageUrl, int price, String description, int state) {
     this.id = id;
     this.name = name;
     this.imageUrl = imageUrl;
     this.price = price;
     this.description = description;
+    this.state = state;
   }
 
   public long getId() {
@@ -72,5 +75,13 @@ public class Product {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public int getState() {
+    return state;
+  }
+
+  public void setState(int state) {
+    this.state = state;
   }
 }

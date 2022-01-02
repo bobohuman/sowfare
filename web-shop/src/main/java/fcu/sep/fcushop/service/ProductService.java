@@ -36,6 +36,16 @@ public class ProductService {
       .executeAndFetch(Product.class);
     }
   }
+  public List<Product> getProducts(int state) {
+    try (Connection connection = sql2oDbHandler.getConnector().open()) {
+      String query = "select ID id, NAME name, IMAGE_URL imageUrl, PRICE price, DESCRIPTION description,STATE state"
+          + " from product where state like :state";
+
+      return connection.createQuery(query)
+          .addParameter("state", state )
+          .executeAndFetch(Product.class);
+    }
+  }
   public Object getProductsCount() {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "SELECT COUNT(*)"+" FROM `lend_things`.`product`;";

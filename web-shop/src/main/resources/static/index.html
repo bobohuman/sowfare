@@ -176,6 +176,10 @@ return"";
         $('#productList').append(html);
       }
     }
+    function handler(productid){
+      document.cookie = 'productid='+productid+';path=./shop';
+      window.location.replace("http://localhost:8080/shop/index.html");
+     }
 
     function getProducts(targetUrl) {
       // Using the core $.ajax() method

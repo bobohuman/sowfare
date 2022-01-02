@@ -37,7 +37,7 @@ public class ProductController {
   
   @GetMapping("/products/shop/{id}")
   public List<Product> getshopProducts(@PathVariable("id") int id) {
-    return productManager.getProducts(id);
+    return productManager.getshopProducts(id);
   }
 
   public int getProductsCount() {

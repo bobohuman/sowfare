@@ -25,11 +25,11 @@ public class OrderService {
     }
   }
 
-  public List<Order> getOrders(int id) {
+  public List<Order> getOrders(int userid) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
 
-      String query = "select ID id,productId productId,productCount productCount,productTime productTime"
-          + " from `lend_things`.`order` WHERE (`id`="+ id +");";
+      String query = "select ID id,productId productId,productCount productCount,productTime productTime,userid userid"
+          + " from `lend_things`.`order` WHERE (`userid`="+ userid +");";
 
       return connection.createQuery(query)
           .executeAndFetch(Order.class);

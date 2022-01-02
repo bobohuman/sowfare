@@ -18,17 +18,21 @@ public class Order {
 
   private int productTime;
 
+  private int userid;
+
+
   public Order() {
   }
 
   /**this is.
    *Order.
    */
-  public Order(int id,int productId,int productCount,int productTime) {
+  public Order(int id,int productId,int productCount,int productTime,int userid) {
     this.id = id;
     this.productId = productId;
     this.productCount = productCount;
     this.productTime = productTime;
+    this.userid = userid;
   }
 
   public int getId() {
@@ -61,5 +65,13 @@ public class Order {
 
   public void setProductTime(int productTime) {
     this.productTime = productTime;
+  }
+
+  public int getUserid() {
+    return userid;
+  }
+
+  public void setUserid(int userid) {
+    this.userid = userid;
   }
 }

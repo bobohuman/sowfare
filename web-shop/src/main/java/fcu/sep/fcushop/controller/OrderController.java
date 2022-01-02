@@ -30,8 +30,8 @@ public class OrderController {
   }
 
 
-  @GetMapping("/orders/{id}")
-  public List<Order> getOrders(@PathVariable("id") int id) {
-    return orderManager.getOrders(id);
+  @GetMapping("/orders/{userid}")
+  public List<Order> getOrders(@PathVariable("userid") int userid) {
+    return orderManager.getOrders(userid);
   }
 }

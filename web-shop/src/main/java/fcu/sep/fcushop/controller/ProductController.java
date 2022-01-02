@@ -34,7 +34,11 @@ public class ProductController {
   public List<Product> getProducts(@PathVariable("state") int state) {
     return productManager.getProducts(state);
   }
-
+  
+  @GetMapping("/products/shop/{id}")
+  public List<Product> getshopProducts(@PathVariable("id") int id) {
+    return productManager.getProducts(id);
+  }
 
   public int getProductsCount() {
     return Integer.parseInt(String.valueOf(productManager.getProductsCount()));

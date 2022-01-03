@@ -41,16 +41,7 @@
                         <li><a class="dropdown-item" href="/updateProduct.html">賣家訂單</a></li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        類別
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/addProduct.html">服飾</a></li>
-                        <li><a class="dropdown-item" href="/updateProduct.html">美食</a></li>
-                        <li><a class="dropdown-item" href="/updateProduct.html">日常</a></li>
-                    </ul>
-                </li>
+
             </ul>
 
             <!--<form class="d-flex">
@@ -93,6 +84,11 @@
         <span class="input-group-text">Description</span>
         <input type="text" class="form-control" placeholder="Description" id="productDescription" aria-describedby="basic-addon3">
     </div>
+
+    <div class="input-group">
+        <span class="input-group-text">State</span>
+        <input type="text" class="form-control" placeholder="State" id="productState" aria-describedby="basic-addon3">
+    </div>
     <button class="btn btn-outline-secondary" type="button" id="addProduct" onclick="addProduct()">新增商品</button>
 
 </div>
@@ -105,11 +101,12 @@ function addProduct(){
       const productUrl  = document.getElementById("productUrl").value;
       const productMoney  = document.getElementById("productMoney").value;
       const productDescription  = document.getElementById("productDescription").value;
+      const productState  = document.getElementById("productState").value;
 
       if (productName.trim() === '') {
         addProducts('add');
       } else {
-        const url='add/' + productName+'/'+productUrl+'/'+productMoney+'/'+productDescription;
+        const url='add/' + productName+'/'+productUrl+'/'+productMoney+'/'+productDescription+'/'+productState;
         console.log(url);
         addProducts(url);
         location.href='/';
@@ -146,6 +143,7 @@ function addProduct(){
           console.log( "The request is complete!" );
         });
     }
+
 
 </script>
 

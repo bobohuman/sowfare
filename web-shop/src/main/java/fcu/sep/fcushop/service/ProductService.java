@@ -68,10 +68,10 @@ public class ProductService {
       return connection.createQuery(query).executeScalar();
     }
   }
-  public String addProducts(int ID,String NAME,String IMAGE_URL,int PRICE,String DESCRIPTION) {
+  public String addProducts(int ID,String NAME,String IMAGE_URL,int PRICE,String DESCRIPTION,int STATE) {
     String returnMessage;
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query=String.format("INSERT INTO `lend_things`.`product` (`ID`, `NAME`, `IMAGE_URL`, `PRICE`, `DESCRIPTION`) VALUES (%d,'%s','%s',%d,'%s');", ID,NAME,IMAGE_URL,PRICE,DESCRIPTION);
+      String query=String.format("INSERT INTO `lend_things`.`product` (`ID`, `NAME`, `IMAGE_URL`, `PRICE`, `DESCRIPTION`, 'STATE') VALUES (%d,'%s','%s',%d,'%s', '%d');", ID,NAME,IMAGE_URL,PRICE,DESCRIPTION,STATE);
       System.out.println(query);
       connection.createQuery(query, true).executeUpdate().getKey();
       returnMessage = query + "寫入成功";
@@ -98,7 +98,7 @@ public class ProductService {
   public String updateProducts(int ID,String NAME,String IMAGE_URL,int PRICE,String DESCRIPTION) {
     String returnMessage;
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query=String.format("UPDATE `lend_things`.`product` SET `NAME` = '%s', `IMAGE_URL` = '%s', `PRICE` = '%d', `DESCRIPTION` = '%s' WHERE (`ID` = '%d'); ", NAME,IMAGE_URL,PRICE,DESCRIPTION,ID);
+      String query=String.format("UPDATE `lend_things`.`product` SET `NAME` = '%s', `IMAGE_URL` = '%s', `PRICE` = '%d', `DESCRIPTION` = '%s' WHERE (`ID` = '%d'); ", NAME,IMAGE_URL,PRICE,DESCRIPTION);
       System.out.println(query);
       connection.createQuery(query, true).executeUpdate().getKey();
       returnMessage = query + "寫入成功";

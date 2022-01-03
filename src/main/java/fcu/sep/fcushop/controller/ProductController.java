@@ -50,7 +50,7 @@ public class ProductController {
 
   @GetMapping("/add/{productName}/{productUrl}/{productMoney}/{productDescription}/{productState}")
   public List<Product> addProducts(@PathVariable("productName") String productName, @PathVariable("productUrl") String productUrl, @PathVariable("productMoney") String productMoney, @PathVariable("productDescription") String productDescription, @PathVariable("productState") int productState) {
-    productManager.addProducts(getMaxID()+1,productName,"https://i.imgur.com/"+productUrl,Integer.parseInt(productMoney),productDescription,productState);
+    productManager.addProducts(productName,"https://i.imgur.com/"+productUrl,Integer.parseInt(productMoney),productDescription,productState);
     return productManager.getProducts();
   }
 

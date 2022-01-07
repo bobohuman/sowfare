@@ -48,7 +48,7 @@ $(document).ready(function()
 <div id="wb_carouselGrid">
 <div id="carouselGrid">
 <div class="row">
-<div class="col-12 col-lg-8" id="picture">
+<div class="col-12 col-lg-6" id="picture">
 <!--
 <div id="wb_Carousel1">
 <div id="Carousel1" class="carousel slide" data-ride="carousel">
@@ -82,48 +82,56 @@ $(document).ready(function()
 </div>
 -->
 </div>
-<div class="col-12 col-lg-4">
+<div class="col-12 col-lg-6">
 <div id="wb_Text4">
 </div>
-<div id="wb_LayoutGrid2">
-<div id="LayoutGrid2">
-<div class="row">
-<div class="col-6 col-lg-4">
-<div id="wb_Text2">
-    <span style="color:#000000;font-family:微軟正黑體;font-size:16px;">可租 </span>
-    <span id="day"></span>
-    <span style="color:#000000;font-family:微軟正黑體;font-size:16px;">天</span>
-</div>
-</div>
+    <div class="wb_LayoutGrid2">
+        <div class="LayoutGrid2">
+            <div class="row">
+                <div class="col-12 col-sm-10 col-md-10 col-lg-10 ">
+                    <div id="wb_Text2">
+                        <span style="color:#000000;font-family:微軟正黑體;font-size:16px;">可租 </span>
+                        <span id="day"></span>
+                        <span style="color:#000000;font-family:微軟正黑體;font-size:16px;">天</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wb_LayoutGrid3">
+        <div class="LayoutGrid3">
+            <div class="row">
+                <div class="col-12 col-sm-10 col-md-10 col-lg-10 ">
+                    <div id="wb_Text5">
+                        <span style="color:#000000;font-family:微軟正黑體;font-size:16px;">要租</span>
+                        <input id="add2" name="" type="button" value="+" >
+                        <input id="num2" name="num" type="text" value="1" >
+                        <input id="min2" name="" type="button" value="-" >
+                        <span style="color:#000000;font-family:微軟正黑體;font-size:16px;">天</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-
-    <!--
-    <div class="col-2">
-<div id="wb_Text3">
-<span style="color:#000000;font-family:Calibri;font-size:13px;">&quot;</span><span style="color:#000000;font-family:微軟正黑體;font-size:13px;">天數</span><span style="color:#000000;font-family:Calibri;font-size:13px;">&quot;</span>
-</div>
-</div>
-    -->
-</div>
-</div>
-</div>
-<div id="wb_LayoutGrid3">
-<div id="LayoutGrid3">
-<div class="row">
-<div class="col-6 col-lg-2">
-<div id="wb_Text1">
-<span style="color:#000000;font-family:微軟正黑體;font-size:16px;">數量</span>
-</div>
-</div>
-<div id="wb_Spinner1" class="col-6 col-lg-4">
-    <input id="add" name="" type="button" value="+" >
-    <input id="num" name="num" type="text" value="1"  onchange="setTotal();" >
-    <input id="min" name="" type="button" value="-" >
-</div>
-</div>
-</div>
-</div>
-<input type="submit" id="Button1" name="" value="加入購物車">
+    <div class="wb_LayoutGrid3">
+        <div class="LayoutGrid3">
+            <div class="row">
+                <div class="col-12 col-sm-10 col-md-10 col-lg-10">
+                    <div id="wb_Text1">
+                        <span style="color:#000000;font-family:微軟正黑體;font-size:16px;">數量</span>
+                    <input id="add" name="" type="button" value="+" >
+                    <input id="num" name="num" type="text" value="1" >
+                    <input id="min" name="" type="button" value="-" >
+                        <span style="color:#000000;font-family:微軟正黑體;font-size:16px;">件</span>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-10 col-md-10 col-lg-10" >
+        <input type="submit" id="Button1" name="" value="加入購物車">
+    </div>
 </div>
 </div>
 </div>
@@ -164,6 +172,27 @@ $(function(){ //這裡是加減按鈕都啟用的情況
 		}
 		else{
 		alert("至少購買一件哦！");
+		}
+		setTotal();
+	})
+});
+
+function setTotal(){
+		var t = $("#num2");
+		}
+
+$(function(){ //這裡是加減按鈕都啟用的情況
+	var t = $("#num2");
+	$("#add2").click(function(){
+		t.val(parseInt(t.val())+1)
+		setTotal();
+	})
+	$("#min2").click(function(){
+		if(t.val()>1){
+		t.val(parseInt(t.val())-1);
+		}
+		else{
+		alert("至少租一天喔！");
 		}
 		setTotal();
 	})

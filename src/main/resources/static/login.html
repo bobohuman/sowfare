@@ -10,8 +10,8 @@
     <title>Title</title>
 
 
-<title>Title</title>
-<style>
+    <title>Title</title>
+    <style>
         #myDIV {
             background: white;
             animation: mymove 8s infinite;
@@ -20,6 +20,7 @@
         @keyframes mymove {
             50% {background: grey;}
         }
+
     </style>
 </head>
 <body>
@@ -52,24 +53,21 @@
         </div>
     </div>
 </div>
-    <h3 align="center">登入</h3>
-    <div align="center">
-<form id="form1" name="form1" method="post" action="" onclick="return false">
+<h3 align="center">登入</h3>
+<div align="center">
+    <form id="form1" name="form1" method="post" action="" onclick="return false">
         <p>
-        使用者名稱:
-        <input type="text" name="name" id="name" placeholder="請輸入帳號" />
+            帳&emsp;&emsp;&emsp;號:
+            <input type="text" name="name" id="name" placeholder="請輸入帳號"/>
         </p>
         <p>
-        密&emsp;&emsp;&emsp;碼:
-        <input type="password" name="pwd" id="pwd" placeholder="請輸入密碼"/>
+            密&emsp;&emsp;&emsp;碼:
+            <input type="password" name="pwd" id="pwd" placeholder="請輸入密碼"/>
         </p>
-        <input type="submit" name="login" id="login" value="登入">
-        <td>&emsp;</td>
-        <td>&emsp;</td>
-        <a href="/signup.html"><input type="button" value="註冊" ></a>
-</form>
-
-    </div>
+        <input type="submit" name="login" id="login" value="確認">
+    </form>
+    <a href="/signup.html">註冊</a>
+</div>
 <div id="userlist">
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -163,6 +161,7 @@ return"";
           console.log( "The request is complete!" );
         });
     }
+
 
 
 </script>

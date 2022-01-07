@@ -19,6 +19,8 @@
         @keyframes mymove {
             50% {background: grey;}
         }
+
+
     </style>
 </head>
 <body>
@@ -52,95 +54,63 @@
     </div>
 </div>
 <h3 align="center">免費註冊</h3>
-<form align="center">
-    <p>
-        姓&emsp;&emsp;&emsp;名:
-        <input type="text" name="username" id="username" placeholder="請輸入姓名"/>
-    </p>
-    <p>
-        信&emsp;&emsp;&emsp;箱:
-        <input type="text" name="mail" id="mail" placeholder="請輸入信箱"/>
-    </p>
-    <p>
-        帳&emsp;&emsp;&emsp;號:
-        <input type="text" name="account" id="account" placeholder="請輸入帳號" />
-    </p>
-    <p>
-        密&emsp;&emsp;&emsp;碼:
-        <input type="password" name="pwd" id="pwd" placeholder="請輸入密碼"/>
-    </p>
-    <tr>
-        <td><input type="submit" name="login" id="login" value="確認"></td>
-        <td>&emsp;</td>
-        <td>&emsp;</td>
-        <td><a href="/index.html">來去逛逛</a></td>
-    </tr>
+<div align="center">
+    <form align="center">
+        <p>
+            姓&emsp;&emsp;&emsp;名:
+            <input type="text" name="username" id="username" placeholder="請輸入姓名"/>
+        </p>
+        <p>
+            信&emsp;&emsp;&emsp;箱:
+            <input type="text" name="mail" id="mail" placeholder="請輸入信箱"/>
+        </p>
+        <p>
+            帳&emsp;&emsp;&emsp;號:
+            <input type="text" name="account" id="account" placeholder="請輸入帳號"/>
+        </p>
+        <p>
+            密&emsp;&emsp;&emsp;碼:
+            <input type="password" name="pwd" id="pwd" placeholder="請輸入密碼"/>
+        </p>
+        <input type="submit" name="login" id="login" value="確認">
 
-    <!--<table align="center">
-        <tr>
-            <td><label>名稱：</label></td>
-            <td><input type="rdt" name="username" id="username" placeholder="請輸入姓名" /><br></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td><label>信&nbsp;&nbsp;&nbsp;箱：</label></td>
-            <td><input type="rdt" name="mail" id="mail" placeholder="請輸入信箱" ></td>
-        </tr>
-        <tr>
-            <td><label>帳&nbsp;&nbsp;&nbsp;號：</label></td>
-            <td><input type="rdt" name="account" id="account" placeholder="請輸入帳號" ></td>
-        </tr>
-        <tr>
-            <td><label>密&nbsp;&nbsp;&nbsp;碼：</label></td>
-            <td><input type="password" name="password" id="pwd" placeholder="請輸入密碼"/></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td><input type="submit" id="sub" value="註冊"></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>-->
-</form>
-
+    </form>
+    <a href="/login.html">登入</a>
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-
+$("#Go").attr("href","/index.html");
 $(document).ready(function(){
     $("#login").click(function(){
         const userName  = $('#username').val();
         const userMail  = $('#mail').val();
         const userAccount  = $('#account').val();
         const userPwd = $('#pwd').val();
-        const url='users/' + userName+'/'+userMail+'/'+userAccount+'/'+userPwd;
-        console.log(url);
-        document.cookie = "Name="+userName;
-        document.cookie = "UserMail="+userMail;
-        addProducts(url);
 
+        if($("#username").val()==""){
+            alert("你尚未填寫姓名");
+            eval("document.form1['name'].focus()");
+        }else if($("#mail").val()==""){
+            alert("你尚未填寫信箱");
+            eval("document.form1['pwd'].focus()");
+        }else if($("#account").val()==""){
+            alert("你尚未填寫帳號");
+            eval("document.form1['pwd'].focus()");
+        }else if($("#pwd").val()==""){
+            alert("你尚未填寫密碼");
+            eval("document.form1['pwd'].focus()");
+        }else{
+            alert("註冊成功");
+            const url='users/' + userName+'/'+userMail+'/'+userAccount+'/'+userPwd;
+            console.log(url);
+            document.cookie = "Name="+userName;
+            document.cookie = "UserMail="+userMail;
+            addUsers(url);
+        }
     });
 });
 
-/*
-function addUser(){
-      const userName  = document.getElementById("username").value;
-      const userMail  = document.getElementById("mail").value;
-      const userAccount  = document.getElementById("account").value;
-      const userPwd  = document.getElementById("pwd").value;
-      if (userName.trim() === '') {
-        addUsers('add');
-      } else {
-        const url='add/' + userName+'/'+userMail+'/'+userAccount+'/'+userPwd
-        console.log(url);
-        addProducts(url);
-        location.href='/';
-        //可改用json或list格式回傳
-      }
-      console.log("G");
-      return 0;
-    }
-*/
-    function addProducts(targetUrl) {
+    function addUsers(targetUrl) {
       // Using the core $.ajax() method
       $.ajax({
           // The URL for the request
@@ -167,6 +137,8 @@ function addUser(){
           console.log( "The request is complete!" );
         });
     }
+
+
 
 </script>
 </body>

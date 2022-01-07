@@ -71,11 +71,7 @@ public class ProductService {
   public String addProducts(String NAME,String IMAGE_URL,int PRICE,String DESCRIPTION,int STATE) {
     String returnMessage;
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-<<<<<<< HEAD:web-shop/src/main/java/fcu/sep/fcushop/service/ProductService.java
-      String query=String.format("INSERT INTO `lend_things`.`product` (`ID`, `NAME`, `IMAGE_URL`, `PRICE`, `DESCRIPTION`, 'STATE') VALUES ('%d','%s','%s',%d,'%s','%d');", ID,NAME,IMAGE_URL,PRICE,DESCRIPTION,STATE);
-=======
       String query=String.format("INSERT INTO `lend_things`.`product` ( `NAME`, `IMAGE_URL`, `PRICE`, `DESCRIPTION`, 'STATE') VALUES ('%s','%s',%d,'%s',%d);", NAME,IMAGE_URL,PRICE,DESCRIPTION,STATE);
->>>>>>> 869789ea3295b8ad0ab469701c3f4f02c92d245f:src/main/java/fcu/sep/fcushop/service/ProductService.java
       System.out.println(query);
       connection.createQuery(query, true).executeUpdate().getKey();
       returnMessage = query + "寫入成功";

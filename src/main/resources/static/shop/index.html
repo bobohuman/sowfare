@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Untitled Page1</title>
+<title>Untitled Page</title>
 <meta name="generator" content="WYSIWYG Web Builder 16 - http://www.wysiwygwebbuilder.com">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -154,12 +154,32 @@ function setTotal(){
 		if(/\D/.test(t.val())){//檢查使用者輸入的值是否是數字
 		alert("請您輸入正確的數量！");
 		t.val(1);
+		tmp.innerHTML = "2488元";
+		tmp1.innerHTML = "2488元";
 		}
 		else{//如果輸入合法
+	           if(t.val() > 10){
+			     confirm("您真的準備一次購買這麼多？");
+	            }
 		}
 }
 
-
+$(function(){ //這裡是加減按鈕都啟用的情況
+	var t = $("#num");
+	$("#add").click(function(){
+		t.val(parseInt(t.val())+1)
+		setTotal();
+	})
+	$("#min").click(function(){
+		if(t.val()>1){
+		t.val(parseInt(t.val())-1);
+		}
+		else{
+		alert("至少購買一件哦！");
+		}
+		setTotal();
+	})
+});
 function setCookie(name){
   let arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
   if (arr != null) return unescape(arr[2]);

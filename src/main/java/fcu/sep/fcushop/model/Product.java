@@ -22,19 +22,21 @@ public class Product {
 
   private int state;
 
+  private int time;
   public Product() {
   }
 
   /**this is.
    *Product.
    */
-  public Product(long id, String name, String imageUrl, int price, String description, int state) {
+  public Product(long id, String name, String imageUrl, int price, String description, int state,int time) {
     this.id = id;
     this.name = name;
     this.imageUrl = imageUrl;
     this.price = price;
     this.description = description;
     this.state = state;
+    this.time= time;
   }
 
   public long getId() {
@@ -83,5 +85,13 @@ public class Product {
 
   public void setState(int state) {
     this.state = state;
+  }
+
+  public int getTime() {
+    return time;
+  }
+
+  public void setTime(int time) {
+    this.time = time;
   }
 }

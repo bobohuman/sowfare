@@ -89,6 +89,12 @@
         <span class="input-group-text">State</span>
         <input type="text" class="form-control" placeholder="State" id="productState" aria-describedby="basic-addon3">
     </div>
+
+    <div class="input-group">
+        <span class="input-group-text">最長租借時長</span>
+        <input type="text" class="form-control" placeholder="Time" id="productTime" aria-describedby="basic-addon3">
+    </div>
+
     <button class="btn btn-outline-secondary" type="button" id="addProduct" onclick="addProduct()">新增商品</button>
 
 </div>
@@ -102,11 +108,11 @@ function addProduct(){
       const productMoney  = document.getElementById("productMoney").value;
       const productDescription  = document.getElementById("productDescription").value;
       const productState  = document.getElementById("productState").value;
-
+     const  productTime  = document.getElementById("productTime").value;
       if (productName.trim() === '') {
         addProducts('add');
       } else {
-        const url='add/' + productName+'/'+productUrl+'/'+productMoney+'/'+productDescription+'/'+productState;
+        const url='add/' + productName+'/'+productUrl+'/'+productMoney+'/'+productDescription+'/'+productState+'/'+productTime;
         console.log(url);
         addProducts(url);
         location.href='/';

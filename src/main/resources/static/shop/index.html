@@ -113,7 +113,9 @@ $(document).ready(function()
 </div>
 <div class="col-2">
 <div id="wb_Spinner1">
-<input type="text" id="Spinner1" name="Spinner1" value="1">
+    <input id="min" name="" type="button" value="-" >
+    <input id="num" name="num" type="text" value="1"  onchange="setTotal();" >
+    <input id="add" name="" type="button" value="+" >
 </div>
 </div>
 <div class="col-3">
@@ -145,6 +147,19 @@ $(document).ready(function()
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 <script>
+function setTotal(){
+		var t = $("#num");
+		var tmp = document.getElementById("totalPrice");//需要修改的總價位置1
+		var tmp1 = document.getElementById("totalPrice1");//需要修改的總價位置2
+		if(/\D/.test(t.val())){//檢查使用者輸入的值是否是數字
+		alert("請您輸入正確的數量！");
+		t.val(1);
+		}
+		else{//如果輸入合法
+		}
+}
+
+
 function setCookie(name){
   let arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
   if (arr != null) return unescape(arr[2]);

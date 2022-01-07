@@ -48,11 +48,10 @@ public class ProductController {
     return Integer.parseInt(String.valueOf(productManager.getMaxID()));
   }
 
-  @GetMapping("/add/{productName}/{productUrl}/{productMoney}/{productDescription}/{productState}")
-  public List<Product> addProducts(@PathVariable("productName") String productName, @PathVariable("productUrl") String productUrl, @PathVariable("productMoney") String productMoney, @PathVariable("productDescription") String productDescription, @PathVariable("productState") int productState) {
-    productManager.addProducts(productName,"https://i.imgur.com/"+productUrl,Integer.parseInt(productMoney),productDescription,productState);
-    return productManager.getProducts();
-  }
+  /*@GetMapping("/add/{productName}/{productUrl}/{productMoney}/{productDescription}/{productState}")
+  public List<Product> addProducts(@PathVariable("productName") String productName, @PathVariable("productUrl") String productUrl, @PathVariable("productMoney") int productMoney, @PathVariable("productDescription") String productDescription, @PathVariable("productState") int productState) {
+    return productManager.addProducts(productName,"https://i.imgur.com/"+productUrl,productMoney,productDescription,productState);
+  }*/
 
   @GetMapping("update/{ID}/{productName}/{productUrl}/{productMoney}/{productDescription}")
   public List<Product> updateProducts(@PathVariable("ID") int ID, @PathVariable("productName") String productName, @PathVariable("productUrl") String productUrl, @PathVariable("productMoney") String productMoney, @PathVariable("productDescription") String productDescription) {

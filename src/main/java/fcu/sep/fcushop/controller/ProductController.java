@@ -48,9 +48,10 @@ public class ProductController {
     return Integer.parseInt(String.valueOf(productManager.getMaxID()));
   }
 
-  @GetMapping("/add/{productName}/{productUrl}/{productMoney}/{productDescription}/{productState}/{productTime}")
-  public String addProducts(@PathVariable("productName") String productName, @PathVariable("productUrl") String productUrl, @PathVariable("productMoney") int productMoney, @PathVariable("productDescription") String productDescription, @PathVariable("productState") int productState, @PathVariable("productTime") int productTime) {
-    return productManager.addProducts(productName,productUrl,productMoney,productDescription,productState,productTime);
+  @GetMapping("/add/{productName}/{productUrl}/{productMoney}/{productDescription}/{productState}/{productTime}/{Seller}")
+  public String addProducts(@PathVariable("productName") String productName, @PathVariable("productUrl") String productUrl, @PathVariable("productMoney") int productMoney, @PathVariable("productDescription") String productDescription, @PathVariable("productState") int productState, @PathVariable("productTime") int productTime
+      ,@PathVariable("Seller") int seller) {
+    return productManager.addProducts(productName,productUrl,productMoney,productDescription,productState,productTime,seller);
   }
 
   @GetMapping("update/{ID}/{productName}/{productUrl}/{productMoney}/{productDescription}")

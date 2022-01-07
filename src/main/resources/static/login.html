@@ -99,7 +99,7 @@ return"";
      const iflogin = getCookie('iflogin');
         if(iflogin=='yes'){
         alert("你已經登入");
-        window.location.replace("http://localhost:8080/");
+        window.location.replace("http://localhost:8080/home.html");
         }
     $("#login").click(function(){
         document.cookie = "name=who";
@@ -141,7 +141,7 @@ return"";
           }
           if(getCookie('name')!='who'){
            document.cookie = "iflogin=123";
-           window.location.replace("http://localhost:8080/");
+           window.location.replace("http://localhost:8080/home.html");
            }
           else{
           alert("找不到使用者");

@@ -103,8 +103,6 @@ $(document).ready(function(){
             alert("註冊成功");
             const url='users/' + userName+'/'+userMail+'/'+userAccount+'/'+userPwd;
             console.log(url);
-            document.cookie = "Name="+userName;
-            document.cookie = "UserMail="+userMail;
             addUsers(url);
         }
     });

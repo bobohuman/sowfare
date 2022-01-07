@@ -100,7 +100,33 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-
+function setCookie(name){
+  let arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
+  if (arr != null) return unescape(arr[2]);
+  return null;
+}
+//刪除cookie
+function delCookie(name){
+  var exp = new Date();
+  exp.setTime(exp.getTime() - 1);
+  var cval = setCookie(name);
+  if (cval != null)
+    document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString()+";path=/";
+}
+function getCookie(name){
+var cookies = document.cookie;
+var list = cookies.split("; ");// 解析出名/值對列表
+for(var i =0; i < list.length; i++){
+var arr = list[i].split("=");// 解析出名和值
+if(arr[0]== name)
+return decodeURIComponent(arr[1]);// 對cookie值解碼
+}
+return"";
+}
+const seller = getCookie('id');
+$( document ).ready( function() {
+     console.log( "ready!" );
+  });
 
 function addProduct(){
       const productName  = document.getElementById("productName").value;
@@ -108,11 +134,11 @@ function addProduct(){
       const productMoney  = document.getElementById("productMoney").value;
       const productDescription  = document.getElementById("productDescription").value;
       const productState  = document.getElementById("productState").value;
-     const  productTime  = document.getElementById("productTime").value;
+      const  productTime  = document.getElementById("productTime").value;
       if (productName.trim() === '') {
         addProducts('add');
       } else {
-        const url='add/' + productName+'/'+productUrl+'/'+productMoney+'/'+productDescription+'/'+productState+'/'+productTime;
+        const url='add/' + productName+'/'+productUrl+'/'+productMoney+'/'+productDescription+'/'+productState+'/'+productTime+'/'+seller;
         console.log(url);
         addProducts(url);
         location.href='/';

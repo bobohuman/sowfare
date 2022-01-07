@@ -20,6 +20,7 @@ public class Order {
 
   private int userid;
 
+  private int state;
 
   public Order() {
   }
@@ -27,12 +28,13 @@ public class Order {
   /**this is.
    *Order.
    */
-  public Order(int id,int productId,int productCount,int productTime,int userid) {
+  public Order(int id,int productId,int productCount,int productTime,int userid,int state) {
     this.id = id;
     this.productId = productId;
     this.productCount = productCount;
     this.productTime = productTime;
     this.userid = userid;
+    this.state = state;
   }
 
   public int getId() {
@@ -73,5 +75,13 @@ public class Order {
 
   public void setUserid(int userid) {
     this.userid = userid;
+  }
+
+  public int getState() {
+    return state;
+  }
+
+  public void setState(int state) {
+    this.state = state;
   }
 }

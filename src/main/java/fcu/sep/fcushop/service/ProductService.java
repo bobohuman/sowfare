@@ -48,7 +48,7 @@ public class ProductService {
   }
   public List<Product> getshopProducts(int id) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = "select ID id, NAME name, IMAGE_URL imageUrl, PRICE price, DESCRIPTION description,TIME time"
+      String query = "select ID id, NAME name, IMAGE_URL imageUrl, PRICE price, DESCRIPTION description,TIME time,SELLER seller"
           + " from product where id like :id";
 
       return connection.createQuery(query)
@@ -68,10 +68,10 @@ public class ProductService {
       return connection.createQuery(query).executeScalar();
     }
   }
-  public String addProducts(String NAME,String IMAGE_URL,int PRICE,String DESCRIPTION,int STATE,int TIME) {
+  public String addProducts(String NAME,String IMAGE_URL,int PRICE,String DESCRIPTION,int STATE,int TIME,int SELLER) {
     String returnMessage;
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query=String.format("INSERT INTO `lend_things`.`product` ( `NAME`, `IMAGE_URL`, `PRICE`, `DESCRIPTION`, `STATE`, `TIME`) VALUES ('%s','%s',%d,'%s',%d,%d);", NAME,IMAGE_URL,PRICE,DESCRIPTION,STATE,TIME);
+      String query=String.format("INSERT INTO `lend_things`.`product` ( `NAME`, `IMAGE_URL`, `PRICE`, `DESCRIPTION`, `STATE`, `TIME`,`SELLER`) VALUES ('%s','%s',%d,'%s',%d,%d,%d);", NAME,IMAGE_URL,PRICE,DESCRIPTION,STATE,TIME,SELLER);
       System.out.println(query);
       connection.createQuery(query, true).executeUpdate().getKey();
       returnMessage = query + "寫入成功";

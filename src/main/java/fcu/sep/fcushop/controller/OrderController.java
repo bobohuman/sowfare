@@ -40,4 +40,9 @@ public class OrderController {
    @PathVariable("protime") int protime, @PathVariable("uid") int uid, @PathVariable("state") int state) {
     return orderManager.addOrders(proid,procount,protime,uid,state);
   }
+
+  @GetMapping("/orderdelte/{proid}/{uid}/{state}")
+  public String addProducts(@PathVariable("proid") int proid, @PathVariable("uid") int uid, @PathVariable("state") int state) {
+    return orderManager.deleteOrders(proid,uid,state);
+  }
 }

@@ -10,7 +10,46 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <title>FCU Shop</title>
+    <style type="text/css">
+    body{
+    background-color: rgba(0, 0, 0,.2);
+}
+.item_header{
+    display: flex;
+    width: 1000px;
+    margin: 0 auto;
+    height: 30px;
+    background-color: #fff;
+    border-radius: 3px;
+    padding-left: 10px;
+}
+.item_header div{
+    width: 200px;
+    color: #888;
+    line-height: 30px;
+}
+.item_header .item_detail{
+    width: 50%;
+}
+.item_body{
+    margin-top: 20px;
+    height: 100px;
+    align-items: center;
+}
+.item_detail img{
+    width: 80px;
+    height: 80px;
+    border-radius: 3px;
+    /* margin-top: 10px; */
+    float: left;
+}
+.item_detail .name{
+    margin-left: 100px;
+    margin-top: 20px;
+}
+</style>
 </head>
+
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid" id="top">
@@ -34,7 +73,7 @@
                     <a class="nav-link" href="/viewproduct.html">購物車</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         訂單
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -62,12 +101,50 @@
         <div id="welcome"></div>
     </div>
 </nav>
-
+<br>
 <div class="container">
-    <h1 class="mt-3">My Shop</h1>
 
-    <div class="column" id="orderList">
+    <div id="app">
+        <div class="container">
+            <div class="item_header">
+                <div class="item_detail">商品</div>
+                <div class="price">單價</div>
+                <div class="count">數量</div>
+                <div class="count">時長</div>
+                <div class="amount">總計</div>
+                <div class="operate">操作</div>
+                <div class="operate">賣家</div>
+            </div>
+            <div id="orderList">
+            <!--<div class="item_header item_body">
+                <div class="item_detail">
+                    <img src="https://images.unsplash.com/photo-1534961880437-ce5ae2033053?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80" alt="">
+                    <div class="name">優質短袖白T</div>
+                </div>
+
+                <div class="price"><span>$</span>300</div>
+                <div class="count">
+                    1
+                </div>
+                <div class="amount">300</div>
+                <div class="operate">
+                    <button>刪除</button>
+                </div>
+                <div class="operate">賣家</div>
+            </div>-->
+
+            </div>
+        </div>
+        <br>
+        <div align="center">
+            <span>確認無誤後，點擊按鈕送出訂單</span>
+            <button type="button" class="btn btn-dark">加入</button>
+        </div>
+        <br>
+        <br>
+
     </div>
+
 </div>
 
 <!-- Optional JavaScript; choose one of the two! -->
@@ -85,6 +162,7 @@
 -->
 
 <script>
+
 function setCookie(name){
   let arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
   if (arr != null) return unescape(arr[2]);
@@ -115,24 +193,56 @@ return"";
     const iflogin = getCookie('iflogin');
     let html= '<h5> welcome   ' + name + '</h5>';
     $('#welcome').append(html);
-    emptyOrders();
+
     getOrder('orders/'+id+'/1');
   });
 
 
-    function emptyOrders() {
-      $('#orderList').empty();
-    }
 
-    function showProducts(products) {
+    function showProducts(products,i,j,k) {
       for ( let product of products ) {
-        let html = '<p class="card-text">'+product.name+'</p>';
-        html += '<p class="card-text">賣家:' + product.seller + '</p>';
-        html +='<img src="' + product.imageUrl + '" width="90" height="100" alt="' + product.name + '">';
-        $('#product'+product.id).append(html);
+        let html='<div class="item_header item_body"> <div class="item_detail">';
+        html +='<img src="' + product.imageUrl + '" width="80" height="80" alt="' + product.name + '">';
+        html += '<div class="name">'+product.name+'</div></div>';
+        html+=' <div class="price"><span>$</span>'+product.price+'</div>'
+        html+='<div class="count">' + j + '</div>'
+        html+='<div class="count">' + k + '天</div>'
+        html+='<div class="amoynt">$' + product.price*j*k + '</div>'
+        html+='<div class="operate"><button onclick="delete('+i+')">刪除</button></div>'
+        html+='<div class="operate">'+product.seller+'</div>'
+        html+='</div>'
+        $('#orderList').append(html);
       }
     }
-    function getProducts(targetUrl) {
+    function delete(i){
+        const id = getCookie('id');
+        const targetUrl = 'orderdelte/'+i+'/'+id+'/1';
+        $.ajax({
+          // The URL for the request
+          url: targetUrl,
+
+          // Whether this is a POST or GET request
+          type: "GET",
+
+          // The type of data we expect back
+          dataType : "json",
+      })
+        // Code to run if the request succeeds (is done);
+        // The response is passed to the function
+        // Code to run if the request fails; the raw request and
+        // status codes are passed to the function
+        .fail(function( xhr, status, errorThrown ) {
+          console.log( "Sorry, there was a problem!" );
+          console.log( "Error: " + errorThrown );
+          console.log( "Status: " + status );
+          console.dir( xhr );
+        })
+        // Code to run regardless of success or failure;
+        .always(function( xhr, status ) {
+          console.log( "The request is complete!" );
+        });
+    }
+    function getProducts(targetUrl,i,j,k) {
       // Using the core $.ajax() method
       $.ajax({
           // The URL for the request
@@ -148,7 +258,7 @@ return"";
         // The response is passed to the function
         .done(function( json ) {
           let products = json;
-          showProducts(products);
+          showProducts(products,i,j,k);
         })
         // Code to run if the request fails; the raw request and
         // status codes are passed to the function
@@ -166,17 +276,7 @@ return"";
 
     function addProducts(products) {
       for ( let product of products ) {
-        let html = '<div class="row">';
-        html += '<div id="product' + product.productId + '" class="card-body">';
-        $('#orderList').append(html);
-        getProducts('/products/shop/'+product.productId);
-        html = '<div id="product' + product.productId + '" class="card-body">';
-        html += '<p class="card-text">商品ID:' + product.productId + '</p>';
-        html += '<p class="card-text">商品數量:' + product.productCount + '</p>';
-        html += '<p class="card-text">商品租借時長:' + product.productTime + '/天</p>';
-        html += '</div>';
-        html += '</div>';
-        $('#orderList').append(html);
+          getProducts('/products/shop/'+product.productId,product.productId,product.productCount,product.productTime);
       }
     }
 

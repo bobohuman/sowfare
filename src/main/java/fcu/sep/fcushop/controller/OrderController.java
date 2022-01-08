@@ -34,6 +34,10 @@ public class OrderController {
   public List<Order> getOrders(@PathVariable("userid") int userid,@PathVariable("state") int state) {
     return orderManager.getOrders(userid,state);
   }
+  @GetMapping("/sellerorder/{proid}/{state}")
+  public List<Order> sellerorder(@PathVariable("proid") int proid,@PathVariable("state") int state) {
+    return orderManager.getsellers(proid,state);
+  }
 
   @GetMapping("/orders/{proid}/{procount}/{protime}/{uid}/{state}")
   public String addProducts(@PathVariable("proid") int proid, @PathVariable("procount") int procount,

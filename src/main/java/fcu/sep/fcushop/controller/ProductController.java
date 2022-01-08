@@ -40,12 +40,9 @@ public class ProductController {
     return productManager.getshopProducts(id);
   }
 
-  public int getProductsCount() {
-    return Integer.parseInt(String.valueOf(productManager.getProductsCount()));
-  }
-
-  public int getMaxID() {
-    return Integer.parseInt(String.valueOf(productManager.getMaxID()));
+  @GetMapping("/seller/{seller}")
+  public List<Product> getSeller(@PathVariable("seller") int seller) {
+    return productManager.getSeller(seller);
   }
 
   @GetMapping("/add/{productName}/{productUrl}/{productMoney}/{productDescription}/{productState}/{productTime}/{Seller}")

@@ -40,9 +40,9 @@ public class ProductController {
     return productManager.getshopProducts(id);
   }
 
-  @GetMapping("/seller/{seller}")
-  public List<Product> getSeller(@PathVariable("seller") int seller) {
-    return productManager.getSeller(seller);
+  @GetMapping("products/seller/{sid}")
+  public List<Product> getSeller(@PathVariable("sid") int sid) {
+    return productManager.getSeller(sid);
   }
 
   @GetMapping("/add/{productName}/{productUrl}/{productMoney}/{productDescription}/{productState}/{productTime}/{Seller}")

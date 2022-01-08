@@ -108,13 +108,11 @@
         <div class="container">
             <div class="item_header">
                 <div class="item_detail" id="state2" onclick="state2();">
-                    未出貨▲
+                    已上架物品▲
                 </div>
                 <div class="price">單價</div>
-                <div class="count">數量</div>
-                <div class="count">時長</div>
-                <div class="amount">總計</div>
-                <div class="operate">賣家</div>
+                <div class="count">最大租借時長</div>
+                <div class="operate">操作</div>
             </div>
             <div id="orderList" style="display: none;">
             </div>
@@ -122,13 +120,14 @@
             <br>
             <div class="item_header">
                 <div class="item_detail" id="state3" onclick="state3();">
-                    已出貨▲
+                    未出貨▲
                 </div>
                 <div class="price">單價</div>
                 <div class="count">數量</div>
-                <div class="count">時長</div>
+                <div class="count">最大租借時長</div>
                 <div class="amount">總計</div>
-                <div class="operate">賣家</div>
+                <div class="operate">操作</div>
+                <div class="operate">買家</div>
             </div>
             <div id="orderList2" style="display: none;">
             </div>
@@ -161,11 +160,11 @@ var state2 = document.getElementById('state2');
 var orderList = document.getElementById('orderList');
     if (orderList.style.display === 'none') {
           orderList.style.display = 'block';
-          state2.innerText = "未出貨▼";
+          state2.innerText = "已上架物品▼";
     }
     else {
           orderList.style.display = 'none';
-          state2.innerText = "未出貨▲";
+          state2.innerText = "已上架物品▲";
     }
 }
 function state3(){
@@ -211,7 +210,8 @@ return"";
     let html= '<h5> welcome   ' + name + '</h5>';
     $('#welcome').append(html);
 
-    getSeller('/seller/'+id);
+    getSeller('/products/seller/'+id,1);
+    getSeller('/products/seller/'+id,2);
   });
 
 
@@ -221,18 +221,19 @@ return"";
         let html='<div class="item_header item_body"> <div class="item_detail">';
         html +='<img src="' + product.imageUrl + '" width="80" height="80" alt="' + product.name + '">';
         html += '<div class="name">'+product.name+'</div></div>';
-        html+=' <div class="price"><span>$</span>'+product.price+'</div>'
-       /* html+='<div class="count">' + j + '</div>'
-        html+='<div class="count">' + k + '天</div>'
-        html+='<div class="amoynt">$' + product.price*j*k + '</div>'*/
-        html+='<div class="operate">'+product.seller+'</div>'
-        html+='</div>'
+        html+=' <div class="count"><span>$</span>'+product.price+'</div>';
+        html+=' <div class="count">&ensp;&ensp;&ensp;'+product.time+'天</div>';
+         html+='<div class="operate">';
+        html += '<a href="#" class="btn btn-primary" onclick="handler(';
+        html +=product.id+'); return false;"> 刪除 </a>';
+         html+='</div>'
+        html+='</div>';
         $('#orderList').append(html);
 
       }
     }
 
-    function getSeller(targetUrl) {
+    function getSeller(targetUrl,state) {
       // Using the core $.ajax() method
       $.ajax({
           // The URL for the request
@@ -248,7 +249,12 @@ return"";
         // The response is passed to the function
         .done(function( json ) {
           let sellers = json;
+          if(state==1){
           showSellers(sellers);
+          }
+          if(state==2){
+          addOrders(sellers);
+          }
         })
         // Code to run if the request fails; the raw request and
         // status codes are passed to the function
@@ -264,13 +270,32 @@ return"";
         });
     }
 
-    /*function addProducts(products,state) {
+    function addOrders(products) {
       for ( let product of products ) {
-          getProducts('/products/shop/'+product.productId,state,product.productCount,product.productTime);
+          getOrder('/sellerorder/'+product.id+'/2',product.imageUrl,product.name,product.price);
       }
-    }*/
+    }
+    function showOrders(products,i,j,k){
+      for ( let product of products ) {
+      let html='<div class="item_header item_body">'
+        html+='<div class="item_detail">';
+        html +='<img src="' + i + '" width="80" height="80" alt="' + product.name + '">';
+        html += '<div class="name">'+j+'</div></div>';
+        html += '<div class="price">'+k+'</div>';
+        html+=' <div class="count">'+product.productCount+'</div>';
+        html+=' <div class="count">&ensp;&ensp;&ensp;'+product.productTime+'天</div>';
+        html+=' <div class="amount">'+k*product.productCount*product.productTime+'</div>';
+         html+='<div class="operate">';
+        html += '<a href="#" class="btn btn-primary" onclick="handler(';
+        html +=product.id+'); return false;"> 更新 </a>';
+         html+='</div>'
+         html+='<div class="operate">'+product.userid+'</div>';
+        html+='</div>';
+        $('#orderList2').append(html);
+      }
+    }
 
-    function getOrder(targetUrl,state) {
+    function getOrder(targetUrl,i,j,k) {
       // Using the core $.ajax() method
       $.ajax({
           // The URL for the request
@@ -284,9 +309,9 @@ return"";
       })
         // Code to run if the request succeeds (is done);
         // The response is passed to the function
-        .done(function( json ) {
+        .done(function( json ){
           let products = json;
-          addProducts(products,state);
+          showOrders(products,i,j,k);
         })
         // Code to run if the request fails; the raw request and
         // status codes are passed to the function

@@ -19,8 +19,15 @@ public class OrderService {
 
   public List<Order> getOrders() {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = "select id id ,productId productId,productCount productCount,productTime productTime"
+      String query = "select id id ,productId productId,productCount productCount,productTime productTime,userid userid,STATE state"
           + " FROM `lend_things`.`order`; ";
+      return connection.createQuery(query).executeAndFetch(Order.class);
+    }
+  }
+  public List<Order> getsellers(int proid,int state) {
+    try (Connection connection = sql2oDbHandler.getConnector().open()) {
+      String query = "select id id ,productId productId,productCount productCount,productTime productTime,userid userid,STATE state"
+          + " FROM `lend_things`.`order`WHERE (`productId`="+ proid +" AND `STATE`=" + state +");";
       return connection.createQuery(query).executeAndFetch(Order.class);
     }
   }

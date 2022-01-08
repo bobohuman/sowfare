@@ -208,15 +208,20 @@ return"";
         html+='<div class="count">' + j + '</div>'
         html+='<div class="count">' + k + '天</div>'
         html+='<div class="amoynt">$' + product.price*j*k + '</div>'
-        html+='<div class="operate"><button onclick="delete('+i+')">刪除</button></div>'
+         html+='<div class="operate">';
+        html += '<a href="#" class="btn btn-primary" onclick="handler(';
+        html +=i+'); return false;"> 刪除 </a>';
+         html+='</div>'
         html+='<div class="operate">'+product.seller+'</div>'
         html+='</div>'
         $('#orderList').append(html);
       }
     }
-    function delete(i){
+
+    function handler(x){
         const id = getCookie('id');
-        const targetUrl = 'orderdelte/'+i+'/'+id+'/1';
+        const targetUrl = 'orderdelte/'+x+'/'+id+'/1';
+
         $.ajax({
           // The URL for the request
           url: targetUrl,
@@ -240,8 +245,12 @@ return"";
         // Code to run regardless of success or failure;
         .always(function( xhr, status ) {
           console.log( "The request is complete!" );
-        });
+           });
+
+       alert("刪除成功");
+       window.location.replace("http://localhost:8080/viewproduct.html");
     }
+
     function getProducts(targetUrl,i,j,k) {
       // Using the core $.ajax() method
       $.ajax({

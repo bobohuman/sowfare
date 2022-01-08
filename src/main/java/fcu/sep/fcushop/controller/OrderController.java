@@ -42,7 +42,7 @@ public class OrderController {
   }
 
   @GetMapping("/orderdelte/{proid}/{uid}/{state}")
-  public String addProducts(@PathVariable("proid") int proid, @PathVariable("uid") int uid, @PathVariable("state") int state) {
+  public String  getOrders(@PathVariable("proid") int proid, @PathVariable("uid") int uid, @PathVariable("state") int state) {
     return orderManager.deleteOrders(proid,uid,state);
   }
 }

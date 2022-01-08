@@ -35,4 +35,19 @@ public class OrderService {
           .executeAndFetch(Order.class);
     }
   }
+
+  public String addOrders(int proudctid,int count,int time,int id,int state) {
+    String returnMessage;
+    try (Connection connection = sql2oDbHandler.getConnector().open()) {
+      String query=String.format("INSERT INTO `lend_things`.`order` ( `productid`, `productcount`, `producttime`, `userid`, `state`) VALUES (%d,%d,%d,%d,%d);", proudctid,count,time,id,state);
+      System.out.println(query);
+      connection.createQuery(query, true).executeUpdate().getKey();
+      returnMessage = query + "寫入成功";
+
+    } catch (Exception ex)// 除了SQLException以外之錯誤
+    {
+      returnMessage = "錯誤訊息:" + ex.getMessage();
+    }
+    return returnMessage;
+  }
 }

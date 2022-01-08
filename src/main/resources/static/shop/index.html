@@ -30,7 +30,7 @@ $(document).ready(function()
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid" id="top">
-        <a class="navbar-brand" href="/">FCU 租借網</a>
+        <a class="navbar-brand" href="../home.html">FCU 租借網</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -129,7 +129,7 @@ $(document).ready(function()
                     </div>
                 </div>
                 <div class="col-12 col-sm-10 col-md-10 col-lg-10" >
-                    <input type="submit" id="Button1" name="" value="加入購物車">
+                    <button class="btn btn-outline-secondary" type="button" onclick="addorder();">search</button>
                 </div>
             </div>
         </div>
@@ -285,6 +285,51 @@ return"";
           console.log( "The request is complete!" );
         });
     }
+
+
+
+    function addorder(){
+      const productid = getCookie('productid');
+      const id = getCookie('id');
+      const time = $("#num2").val();
+      const count = $("#num").val();
+      const url='../orders/'+productid+'/'+count+'/'+time+'/'+id+'/1';
+      console.log(url);
+      addOrders(url);
+      //可改用json或list格式回傳
+      console.log("G");
+      alert("成功加入購物車");
+      return 0;
+    }
+
+    function addOrders(targetUrl) {
+      // Using the core $.ajax() method
+      $.ajax({
+          // The URL for the request
+          url: targetUrl,
+
+          // Whether this is a POST or GET request
+          type: "GET",
+          //盡量用post
+
+          // The type of data we expect back
+          dataType : "json",
+      })
+
+        // Code to run if the request fails; the raw request and
+        // status codes are passed to the function
+        .fail(function( xhr, status, errorThrown ) {
+          console.log( "Sorry, there was a problem!" );
+          console.log( "Error: " + errorThrown );
+          console.log( "Status: " + status );
+          console.dir( xhr );
+        })
+        // Code to run regardless of success or failure;
+        .always(function( xhr, status ) {
+          console.log( "The request is complete!" );
+        });
+    }
+
 
 </script>
 </body>

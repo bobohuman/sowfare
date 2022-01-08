@@ -54,10 +54,25 @@ public class OrderService {
   public String deleteOrders(int proudctid,int id,int state) {
     String returnMessage;
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query=String.format("DELETE FROM `lend_things`.`order` WHERE(`productid`="+ proudctid +" AND `userid`=" + id +" AND `STATE`=" + state +" );", proudctid,id,state);
+      String query=String.format("DELETE FROM `lend_things`.`order` WHERE(`productid`="+ proudctid +" AND `userid`=" + id +" AND `STATE`=" + state +" );");
       System.out.println(query);
       connection.createQuery(query, true).executeUpdate().getKey();
       returnMessage = query + "刪除成功";
+
+    } catch (Exception ex)// 除了SQLException以外之錯誤
+    {
+      returnMessage = "錯誤訊息:" + ex.getMessage();
+    }
+    return returnMessage;
+  }
+
+  public String updateOrders(int id,int state) {
+    String returnMessage;
+    try (Connection connection = sql2oDbHandler.getConnector().open()) {
+      String query=String.format("UPDATE `lend_things`.`order` SET STATE=2 WHERE(`userid`=" + id +" AND `STATE`=" + state +" );");
+      System.out.println(query);
+      connection.createQuery(query, true).executeUpdate().getKey();
+      returnMessage = query + "更新成功";
 
     } catch (Exception ex)// 除了SQLException以外之錯誤
     {

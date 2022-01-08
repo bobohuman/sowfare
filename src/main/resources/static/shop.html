@@ -10,7 +10,46 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <title>FCU Shop</title>
+    <style type="text/css">
+    body{
+    background-color: rgba(0, 0, 0,.2);
+}
+.item_header{
+    display: flex;
+    width: 1000px;
+    margin: 0 auto;
+    height: 30px;
+    background-color: #fff;
+    border-radius: 3px;
+    padding-left: 10px;
+}
+.item_header div{
+    width: 200px;
+    color: #888;
+    line-height: 30px;
+}
+.item_header .item_detail{
+    width: 50%;
+}
+.item_body{
+    margin-top: 20px;
+    height: 100px;
+    align-items: center;
+}
+.item_detail img{
+    width: 80px;
+    height: 80px;
+    border-radius: 3px;
+    /* margin-top: 10px; */
+    float: left;
+}
+.item_detail .name{
+    margin-left: 100px;
+    margin-top: 20px;
+}
+</style>
 </head>
+
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid" id="top">
@@ -62,12 +101,44 @@
         <div id="welcome"></div>
     </div>
 </nav>
-
+<br>
 <div class="container">
-    <h1 class="mt-3">My Shop</h1>
 
-    <div class="column" id="orderList">
+    <div id="app">
+        <div class="container">
+            <div class="item_header">
+                <div class="item_detail" id="state2" onclick="state2();">
+                未出貨▲
+                </div>
+                <div class="price">單價</div>
+                <div class="count">數量</div>
+                <div class="count">時長</div>
+                <div class="amount">總計</div>
+                <div class="operate">賣家</div>
+            </div>
+            <div id="orderList" style="display: none;">
+            </div>
+            <br>
+            <br>
+            <div class="item_header">
+                <div class="item_detail" id="state3" onclick="state3();">
+                    已出貨▲
+                </div>
+                <div class="price">單價</div>
+                <div class="count">數量</div>
+                <div class="count">時長</div>
+                <div class="amount">總計</div>
+                <div class="operate">賣家</div>
+            </div>
+            <div id="orderList2" style="display: none;">
+            </div>
+        </div>
+
+        <br>
+        <br>
+
     </div>
+
 </div>
 
 <!-- Optional JavaScript; choose one of the two! -->
@@ -85,6 +156,30 @@
 -->
 
 <script>
+function state2(){
+var state2 = document.getElementById('state2');
+var orderList = document.getElementById('orderList');
+    if (orderList.style.display === 'none') {
+          orderList.style.display = 'block';
+          state2.innerText = "未出貨▼";
+    }
+    else {
+          orderList.style.display = 'none';
+          state2.innerText = "未出貨▲";
+    }
+}
+function state3(){
+var state3 = document.getElementById('state3');
+var orderList2 = document.getElementById('orderList2');
+    if (orderList2.style.display === 'none') {
+          orderList2.style.display = 'block';
+          state3.innerText = "已出貨▼";
+    }
+    else {
+          orderList2.style.display = 'none';
+          state3.innerText = "已出貨▲";
+    }
+}
 function setCookie(name){
   let arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
   if (arr != null) return unescape(arr[2]);
@@ -115,26 +210,34 @@ return"";
     const iflogin = getCookie('iflogin');
     let html= '<h5> welcome   ' + name + '</h5>';
     $('#welcome').append(html);
-    emptyOrders();
-    getOrder('orders/'+id+'/2');
+
+    getOrder('orders/'+id+'/2',2);
+    getOrder('orders/'+id+'/3',3);
   });
 
 
-    function emptyOrders() {
-      $('#orderList').empty();
-    }
 
-    function showProducts(products) {
+    function showProducts(products,i,j,k) {
       for ( let product of products ) {
-        const proudctid = getCookie('productId');
-        let html = '<p class="card-text">'+product.name+'</p>';
-        html += '<p class="card-text">商品ID:' + proudctid + '</p>';
-        html += '<p class="card-text">賣家:' + product.seller + '</p>';
-        html +='<img src="' + product.imageUrl + '" width="90" height="100" alt="' + product.name + '">';
-        $('#product'+product.id).append(html);
+        let html='<div class="item_header item_body"> <div class="item_detail">';
+        html +='<img src="' + product.imageUrl + '" width="80" height="80" alt="' + product.name + '">';
+        html += '<div class="name">'+product.name+'</div></div>';
+        html+=' <div class="price"><span>$</span>'+product.price+'</div>'
+        html+='<div class="count">' + j + '</div>'
+        html+='<div class="count">' + k + '天</div>'
+        html+='<div class="amoynt">$' + product.price*j*k + '</div>'
+        html+='<div class="operate">'+product.seller+'</div>'
+        html+='</div>'
+        if(i==2){
+        $('#orderList').append(html);
+        }
+        if(i==3){
+        $('#orderList2').append(html);
+        }
       }
     }
-    function getProducts(targetUrl) {
+
+    function getProducts(targetUrl,i,j,k) {
       // Using the core $.ajax() method
       $.ajax({
           // The URL for the request
@@ -150,7 +253,7 @@ return"";
         // The response is passed to the function
         .done(function( json ) {
           let products = json;
-          showProducts(products);
+          showProducts(products,i,j,k);
         })
         // Code to run if the request fails; the raw request and
         // status codes are passed to the function
@@ -166,25 +269,13 @@ return"";
         });
     }
 
-    function addProducts(products) {
+    function addProducts(products,state) {
       for ( let product of products ) {
-        let html = '<div class="row">';
-        document.cookie = "productId="+product.productId;
-        //const proudctid = getCookie('product.productId');
-        html += '<div id="product' + product.productId + '" class="card-body">';
-        $('#orderList').append(html);
-        getProducts('/products/shop/'+product.productId);
-        html = '<div id="product' + product.productId + '" class="card-body">';
-        //html += '<p class="card-text">商品ID:' + product.productId + '</p>';
-        html += '<p class="card-text">商品數量:' + product.productCount + '</p>';
-        html += '<p class="card-text">商品租借時長:' + product.productTime + '/天</p>';
-        html += '</div>';
-        html += '</div>';
-        $('#orderList').append(html);
+          getProducts('/products/shop/'+product.productId,state,product.productCount,product.productTime);
       }
     }
 
-    function getOrder(targetUrl) {
+    function getOrder(targetUrl,state) {
       // Using the core $.ajax() method
       $.ajax({
           // The URL for the request
@@ -200,7 +291,7 @@ return"";
         // The response is passed to the function
         .done(function( json ) {
           let products = json;
-          addProducts(products);
+          addProducts(products,state);
         })
         // Code to run if the request fails; the raw request and
         // status codes are passed to the function

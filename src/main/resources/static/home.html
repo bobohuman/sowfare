@@ -9,6 +9,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+    <!-- Footer -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+
     <title>FCU Shop</title>
     <style type="text/css">
 
@@ -47,6 +51,15 @@
 		}
 		.main-title .txt p{
 			margin-bottom: 1em;
+		}
+		.sec-title {
+			margin-top: 2em;
+		}
+		.sec-title h2{
+			text-align: center;
+			width: 100%;
+			font-size: 32px;
+			color: #333;
 		}
 
 		.section-group{
@@ -133,7 +146,8 @@
 			background-color: #ccc;
 			color: #fff;
 		}
-	</style>
+
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -146,8 +160,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 
-            <form class="d-flex" >
-                <input type="text" class="form-control" placeholder="name" aria-label="product name" aria-describedby="searchProduct" id="productKeyword">
+            <form class="d-flex">
+                <input type="text" class="form-control" placeholder="name" aria-label="product name"
+                       aria-describedby="searchProduct" id="productKeyword">
                 <button class="btn btn-outline-secondary" type="button" id="searchProduct">search</button>
             </form>
 
@@ -163,7 +178,8 @@
                     <a class="nav-link" href="/viewproduct.html">購物車</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
                         訂單
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -172,7 +188,8 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
                         類別
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -193,7 +210,7 @@
 </nav>
 
 <div class="container">
-    <div  id="title">
+    <div id="title">
         <h1 class="mt-3">My Shop</h1>
     </div>
 
@@ -201,12 +218,15 @@
     <div class="mt-3 row" id="productList">
     </div>
 </div>
+
 <div class="section-group force-group">
+
     <div class="main-title">
         <div class="container">
             <h1>基本流程教學</h1>
             <div class="txt">
-                <p>我們建立實名制的用戶登入方式以確保所有用戶租借過程中皆受到法律的保障。在安心的租借制度中為用戶省去出租與租借在交易及聯絡時的各項不便。傾聽用戶回饋，持續優化APP及增加新功能，提供最好的租借平台，與用戶們共同打造共享租借生活圈。</p>
+                <p>
+                    我們建立實名制的用戶登入方式以確保所有用戶租借過程中皆受到法律的保障。在安心的租借制度中為用戶省去出租與租借在交易及聯絡時的各項不便。傾聽用戶回饋，持續優化APP及增加新功能，提供最好的租借平台，與用戶們共同打造共享租借生活圈。</p>
             </div>
         </div>
     </div>
@@ -214,34 +234,76 @@
     <div class="force">
 
         <div class="item">
-            <img src="./img/bs.jpg">
+            <img src="./img/hi.png">
             <div class="txt">
                 <h2>想借物四步式</h2>
-                <p>點選入想要租借的物品後可看到物品的單日價格、物品地點及損壞賠償費等詳細內容。選擇要租借的日期及天數後可看到並確認總租借日期及租金資訊。前往付款後轉跳至藍新金流支付系統，正確填寫入信用卡資訊後即可成功付款。 付款後待出租方確認並成立此訂單後，則會開啟雙方的聊天功能，可在聊天功能內確認物品狀態及面交時間地點。如出租方取消該筆訂單，則會自動全額退刷信用卡之預付額度。</p>
+                <p>
+                    點選入想要租借的物品後可看到物品的單日價格、物品地點及損壞賠償費等詳細內容。選擇要租借的日期及天數後可看到並確認總租借日期及租金資訊。前往付款後轉跳至藍新金流支付系統，正確填寫入信用卡資訊後即可成功付款。
+                    付款後待出租方確認並成立此訂單後，則會開啟雙方的聊天功能，可在聊天功能內確認物品狀態及面交時間地點。如出租方取消該筆訂單，則會自動全額退刷信用卡之預付額度。</p>
                 <a href="#" class="btn">註冊</a>
             </div>
         </div>
 
         <div class="item">
-            <img src="./img/bs.jpg">
+            <img src="./img/hi.png">
             <div class="txt">
                 <h2>面交三秒交</h2>
-                <p>面交物品時先於聊聊內以文字及照片留下物品狀況以確保雙方權益。點選下方對話欄右側勾勾，則會跳出物品確認欄，點選後代表雙方同意此次面交物品皆無誤。最後，系統會跳出確認物品的字樣，就完成了這次的面交流程 !!</p>
+                <p>面交物品時先於聊聊內以文字及照片留下物品狀況以確保雙方權益。點選下方對話欄右側勾勾，則會跳出物品確認欄，點選後代表雙方同意此次面交物品皆無誤。最後，系統會跳出確認物品的字樣，就完成了這次的面交流程
+                    !!</p>
                 <a href="#" class="btn">註冊</a>
             </div>
         </div>
 
         <div class="item">
-            <img src="./img/bs.jpg">
+            <img src="./img/hi.png">
             <div class="txt">
                 <h2>歸還很簡單</h2>
-                <p>出租及租物雙方於歸還日見面後，打開LendLend至訂單查看，租借方點選歸還物品按鍵。出租方的訂單下方則會跳出確認歸還的通知，點選後進入最後的確認。雙方對於歸還的物品做最後的完善度檢查，並且協調出雙方皆同意的賠償金額，完成此次的租物體驗。</p>
+                <p>
+                    出租及租物雙方於歸還日見面後，打開LendLend至訂單查看，租借方點選歸還物品按鍵。出租方的訂單下方則會跳出確認歸還的通知，點選後進入最後的確認。雙方對於歸還的物品做最後的完善度檢查，並且協調出雙方皆同意的賠償金額，完成此次的租物體驗。</p>
                 <a href="#" class="btn">註冊</a>
             </div>
         </div>
 
     </div>
+
+
+
 </div>
+<!-- Footer -->
+<footer class="w3-row-padding w3-padding-32">
+    <div class="w3-third">
+        <h3>FOOTER</h3>
+        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+        <p>Powered by <a href="#" target="_blank">go to there</a></p>
+    </div>
+
+    <div class="w3-third">
+        <h3>BLOG POSTS</h3>
+        <ul class="w3-ul w3-hoverable">
+            <a href="#" target="_blank"><li class="w3-padding-16">
+                <img src="./img/hi.png" class="w3-left w3-margin-right" style="width:50px">
+                <span class="w3-large">Lorem</span><br>
+                <span>Sed mattis nunc</span>
+            </li></a>
+            <a href="#" target="_blank"><li class="w3-padding-16">
+                <img src="./img/hi.png" class="w3-left w3-margin-right" style="width:50px">
+                <span class="w3-large">Ipsum</span><br>
+                <span>Praes tinci sed</span>
+            </li></a>
+        </ul>
+    </div>
+
+    <div class="w3-third w3-serif">
+        <h3>POPULAR TAGS</h3>
+        <p>
+            <span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">New York</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Dinner</span>
+            <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Salmon</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">France</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Drinks</span>
+            <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Ideas</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Flavors</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Cuisine</span>
+            <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Chicken</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Dressing</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Fried</span>
+            <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Fish</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Duck</span>
+        </p>
+    </div>
+</footer>
 <!-- Optional JavaScript; choose one of the two! -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -391,6 +453,7 @@ return"";
           console.log( "The request is complete!" );
         });
     }
+
 
 </script>
 </body>

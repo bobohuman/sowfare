@@ -25,21 +25,23 @@ public class Product {
   private int time;
 
   private int seller;
+
   public Product() {
   }
 
   /**this is.
    *Product.
    */
-  public Product(long id, String name, String imageUrl, int price, String description, int state,int time,int seller) {
+  public Product(long id, String name, String imageUrl,
+                 int price, String description, int state, int time, int seller) {
     this.id = id;
     this.name = name;
     this.imageUrl = imageUrl;
     this.price = price;
     this.description = description;
     this.state = state;
-    this.time= time;
-    this.seller=seller;
+    this.time = time;
+    this.seller = seller;
   }
 
   public long getId() {

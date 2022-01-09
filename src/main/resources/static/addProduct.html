@@ -209,10 +209,11 @@ function addProduct(){
       const productDescription  = document.getElementById("productDescription").value;
       const productState  = document.getElementById("productState").value;
       const  productTime  = document.getElementById("productTime").value;
+      const purl=window.btoa( productUrl);
       if (productName.trim() === '') {
         addProducts('add');
       } else {
-        const url='add/' + productName+'/'+productUrl+'/'+productMoney+'/'+productDescription+'/'+productState+'/'+productTime+'/'+seller;
+        const url='add/' + productName+'/'+ purl+'/'+productMoney+'/'+productDescription+'/'+productState+'/'+productTime+'/'+seller;
         console.log(url);
         addProducts(url);
         location.href='/';

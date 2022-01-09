@@ -28,7 +28,7 @@ $(document).ready(function()
 </script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light" id="home">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid" id="top">
         <a class="navbar-brand" href="/home.html">FCU 租借網</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -37,13 +37,6 @@ $(document).ready(function()
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-
-            <form class="d-flex">
-                <input type="text" class="form-control" placeholder="search" aria-label="product name"
-                       aria-describedby="searchProduct" id="productKeyword">
-                <a>&nbsp;</a>
-                <button class="btn" type="button" id="searchProduct">search</button>
-            </form>
 
 
             <ul class="navbar-nav mb-2 mb-lg-0 d-flex">
@@ -57,29 +50,15 @@ $(document).ready(function()
                     <a class="nav-link" href="/viewproduct.html">購物車</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         訂單
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/shop.html">購買清單</a></li>
-                        <li><a class="dropdown-item" href="/order.html">客戶訂單</a></li>
+                        <li><a class="dropdown-item" href="/shop.html">買家訂單</a></li>
+                        <li><a class="dropdown-item" href="/order.html">賣家訂單</a></li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        類別
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a href="#product" class="dropdown-item" onclick="go1()">露營 Camping</a></li>
-                        <li><a href="#product" class="dropdown-item" onclick="go2()">滑雪 Ski</a></li>
-                        <li><a href="#product" class="dropdown-item" onclick="go3()">潛水 Diving</a></li>
-                        <li><a href="#product" class="dropdown-item" onclick="go4()">釣魚 Fishing</a></li>
-                        <li><a href="#product" class="dropdown-item" onclick="go5()">汽車&沙灘車 AUTO&ATV</a></li>
-                        <li><a href="#product" class="dropdown-item" onclick="go6()">划船 Boating</a></li>
-                    </ul>
-                </li>
+
             </ul>
 
             <!--<form class="d-flex">

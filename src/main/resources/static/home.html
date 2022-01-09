@@ -20,10 +20,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>FCU Shop</title>
     <style type="text/css">
-        body,h1 {font-family: "Raleway", sans-serif}
-        body, html {height: 100%}
-
-
 		.main-title{
 			margin: 0 0 50px 0;
 			text-align: center;
@@ -155,10 +151,24 @@
 			color: #fff;
 		}
 
+        .btn{
+			line-height: 2em;
+			border:2px solid #ccc;
+			padding: 0 1em;
+			align-self: flex-end;
+			text-decoration: none;
+			border-radius: 200px;
+			margin-top: auto;
+			color: #aaa;
+		}
+		.btn:hover{
+			background-color: #ccc;
+			color: #fff;
+		}
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" id="home">
     <div class="container-fluid" id="top">
         <a class="navbar-brand" href="./home.html">FCU 租借網</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -171,7 +181,8 @@
             <form class="d-flex">
                 <input type="text" class="form-control" placeholder="name" aria-label="product name"
                        aria-describedby="searchProduct" id="productKeyword">
-                <button class="btn btn-outline-secondary" type="button" id="searchProduct">search</button>
+                <a>&nbsp;</a>
+                <button class="btn" type="button" id="searchProduct">search</button>
             </form>
 
 
@@ -221,10 +232,10 @@
 </nav>
 
 <!-- Header with Slideshow -->
-<header class="w3-display-container w3-center" id="home">
+<header class="w3-display-container w3-center">
     <button class="w3-button w3-block w3-green w3-hide-large w3-hide-medium" onclick="document.getElementById('download').style.display='block'">Download <i class="fa fa-android"></i> <i class="fa fa-apple"></i> <i class="fa fa-windows"></i></button>
     <div class="mySlides w3-animate-opacity">
-        <img class="w3-image" src="https://s3.amazonaws.com/imagescloud/images/medias/annexes/annexe-camping-2022.jpg" alt="Image 1" style="min-width:500px" width="1500" height="1000">
+        <img src="https://s3.amazonaws.com/imagescloud/images/medias/annexes/annexe-camping-2022.jpg" alt="Image 1" width="1500" height="700">
         <div class="w3-display-left w3-padding w3-hide-small" style="width:35%">
             <div class="w3-black w3-opacity w3-hover-opacity-off w3-padding-large w3-round-large">
                 <h1 class="w3-xlarge">露營 Camping</h1>
@@ -237,7 +248,7 @@
         </div>
     </div>
     <div class="mySlides w3-animate-opacity">
-        <img class="w3-image" src="https://i.ytimg.com/vi/n2ScTzXC-_k/maxresdefault.jpg" alt="Image 2" style="min-width:500px" width="1500" height="1000">
+        <img src="https://i.ytimg.com/vi/n2ScTzXC-_k/maxresdefault.jpg" alt="Image 2" width="1500" height="700">
         <div class="w3-display-left w3-padding w3-hide-small" style="width:35%">
             <div class="w3-black w3-opacity w3-hover-opacity-off w3-padding-large w3-round-large">
                 <h1 class="w3-xlarge w3-text-red">滑雪 Ski</h1>
@@ -250,7 +261,7 @@
         </div>
     </div>
     <div class="mySlides w3-animate-opacity">
-        <img class="w3-image" src="https://www.leisurepro.com/blog/wp-content/uploads/2010/05/shutterstock_141494932-1.jpg" alt="Image 3" style="min-width:500px" width="1500" height="1000">
+        <img src="https://www.leisurepro.com/blog/wp-content/uploads/2010/05/shutterstock_141494932-1.jpg" alt="Image 3" width="1500" height="700">
         <div class="w3-display-left w3-padding w3-hide-small" style="width:35%">
             <div class="w3-black w3-opacity w3-hover-opacity-off w3-padding-large w3-round-large">
                 <h1 class="w3-xlarge">潛水 Diving</h1>
@@ -263,7 +274,7 @@
         </div>
     </div>
     <div class="mySlides w3-animate-opacity">
-        <img class="w3-image" src="https://i.ytimg.com/vi/gmTw5vp8qCI/maxresdefault.jpg" alt="Image 3" style="min-width:500px" width="1500" height="1000">
+        <img src="https://i.ytimg.com/vi/gmTw5vp8qCI/maxresdefault.jpg" alt="Image 3" width="1500" height="700">
         <div class="w3-display-left w3-padding w3-hide-small" style="width:35%">
             <div class="w3-black w3-opacity w3-hover-opacity-off w3-padding-large w3-round-large">
                 <h1 class="w3-xlarge">釣魚 Fishing</h1>
@@ -276,7 +287,7 @@
         </div>
     </div>
     <div class="mySlides w3-animate-opacity">
-        <img class="w3-image" src="https://stmaaprodfwsite.blob.core.windows.net/assets/sites/1/2020/08/Polaris-Scrambler-XP-1000-Sportsman-XP-1000.jpg" alt="Image 3" style="min-width:500px" width="1500" height="1000">
+        <img src="https://stmaaprodfwsite.blob.core.windows.net/assets/sites/1/2020/08/Polaris-Scrambler-XP-1000-Sportsman-XP-1000.jpg" alt="Image 3" width="1500" height="700">
         <div class="w3-display-left w3-padding w3-hide-small" style="width:35%">
             <div class="w3-black w3-opacity w3-hover-opacity-off w3-padding-large w3-round-large">
                 <h1 class="w3-xlarge">汽車&沙灘車 AUTO&ATV</h1>
@@ -289,7 +300,7 @@
         </div>
     </div>
     <div class="mySlides w3-animate-opacity">
-        <img class="w3-image" src="https://www.discoverboating.com/sites/default/files/kayaking-and-boating.jpg" alt="Image 3" style="min-width:500px" width="1500" height="1000">
+        <img src="https://www.discoverboating.com/sites/default/files/kayaking-and-boating.jpg" alt="Image 3" width="1500" height="700">
         <div class="w3-display-left w3-padding w3-hide-small" style="width:35%">
             <div class="w3-black w3-opacity w3-hover-opacity-off w3-padding-large w3-round-large">
                 <h1 class="w3-xlarge">划船 Boating</h1>
@@ -355,10 +366,10 @@
 
     <div class="main-title">
         <div class="container">
-            <h1>基本流程教學</h1>
+            <h1>1.18 年貨節</h1>
             <div class="txt">
-                <p>
-                    我們建立實名制的用戶登入方式以確保所有用戶租借過程中皆受到法律的保障。在安心的租借制度中為用戶省去出租與租借在交易及聯絡時的各項不便。傾聽用戶回饋，持續優化APP及增加新功能，提供最好的租借平台，與用戶們共同打造共享租借生活圈。</p>
+                <p>FCU 租借網 年貨節，正式開跑啦（撒花跟大家說個好康的小秘密👇)</p>
+                <p>1/18 當天會有幾張厲害的券給大家用哦！ 點進連結手刀領 3 張全站優惠券！</p>
             </div>
         </div>
     </div>
@@ -368,31 +379,33 @@
         <div class="item">
             <img src="./img/hi.png">
             <div class="txt">
-                <h2>想借物四步式</h2>
-                <p>
-                    點選入想要租借的物品後可看到物品的單日價格、物品地點及損壞賠償費等詳細內容。選擇要租借的日期及天數後可看到並確認總租借日期及租金資訊。前往付款後轉跳至藍新金流支付系統，正確填寫入信用卡資訊後即可成功付款。
-                    付款後待出租方確認並成立此訂單後，則會開啟雙方的聊天功能，可在聊天功能內確認物品狀態及面交時間地點。如出租方取消該筆訂單，則會自動全額退刷信用卡之預付額度。</p>
-                <a href="#" class="btn">註冊</a>
+                <h2>🧨狂灑商城85折券</h2>
+                <p>1. 點選想要租借的物品，進入物品詳細頁面。</p>
+                <p>2. 輸入借用天數後，點選加入購物車。</p>
+                <p>3. 進入購物車頁面，點選加入完成訂單。</p>
+                <a href="#" class="btn">領取</a>
             </div>
         </div>
 
         <div class="item">
             <img src="./img/hi.png">
             <div class="txt">
-                <h2>面交三秒交</h2>
-                <p>面交物品時先於聊聊內以文字及照片留下物品狀況以確保雙方權益。點選下方對話欄右側勾勾，則會跳出物品確認欄，點選後代表雙方同意此次面交物品皆無誤。最後，系統會跳出確認物品的字樣，就完成了這次的面交流程
-                    !!</p>
-                <a href="#" class="btn">註冊</a>
+                <h2>🧨天天送千萬紅包</h2>
+                <p>1. 點選想要租借的物品，進入物品詳細頁面。</p>
+                <p>2. 輸入借用天數後，點選加入購物車。</p>
+                <p>3. 進入購物車頁面，點選加入完成訂單。</p>
+                <a href="#" class="btn">領取</a>
             </div>
         </div>
 
         <div class="item">
-            <img src="./img/hi.png">
+            <img src="./img/tiger.jpg">
             <div class="txt">
-                <h2>歸還很簡單</h2>
-                <p>
-                    出租及租物雙方於歸還日見面後，打開LendLend至訂單查看，租借方點選歸還物品按鍵。出租方的訂單下方則會跳出確認歸還的通知，點選後進入最後的確認。雙方對於歸還的物品做最後的完善度檢查，並且協調出雙方皆同意的賠償金額，完成此次的租物體驗。</p>
-                <a href="#" class="btn">註冊</a>
+                <h2>🧨年貨伴手禮</h2>
+                <p>1. 點選想要租借的物品，進入物品詳細頁面。</p>
+                <p>2. 輸入借用天數後，點選加入購物車。</p>
+                <p>3. 進入購物車頁面，點選加入完成訂單。</p>
+                <a href="#" class="btn">領取</a>
             </div>
         </div>
 
@@ -402,9 +415,9 @@
 
 </div>
 <!-- Footer -->
-<footer class="w3-row-padding w3-padding-32">
+<footer class="w3-row-padding w3-padding-32 bg-dark">
     <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
-    <div class="w3-third">
+    <div class="w3-third text-white">
         <h3>FCU 租借網</h3>
         <p>FCU 租借網 裡的成員都是各種運動愛好者，由對運動及戶外用具的需求而萌生將自有物品共享租借的想法。在集思廣益下，這群喜愛休閒與戶外運動的朋友聚在一起，成立公司開始了 FCU 租借網的第一步。</p>
         <p>因『休閒愛好』而有了『物品需求』</p>
@@ -419,18 +432,18 @@
         </div>
     </div>
 
-    <div class="w3-third">
-        <h3>BLOG POSTS</h3>
+    <div class="w3-third text-white">
+        <h3>&nbsp;&nbsp;ABOUT US</h3>
         <ul class="w3-ul w3-hoverable">
             <a href="#" target="_blank"><li class="w3-padding-16">
                 <img src="./img/hi.png" class="w3-left w3-margin-right" style="width:50px">
-                <span class="w3-large">Lorem</span><br>
-                <span>Sed mattis nunc</span>
+                <span class="w3-large">聯絡我們</span><br>
+                <span>及時在線聊天</span>
             </li></a>
             <a href="#" target="_blank"><li class="w3-padding-16">
                 <img src="./img/hi.png" class="w3-left w3-margin-right" style="width:50px">
-                <span class="w3-large">Ipsum</span><br>
-                <span>Praes tinci sed</span>
+                <span class="w3-large">常見問題</span><br>
+                <span>顧客問題整理</span>
             </li></a>
         </ul>
     </div>
@@ -590,11 +603,11 @@ return"";
         let html = '<div class="card col-4">';
         html += '<img src="' + product.imageUrl + '" class="card-img-top" width="350" height="400" alt="' + product.name + '">';
         html += '<div class="card-body">';
-        html += '<h5 class="card-title">' + product.name + '</h5>';
-        html += '<p class="card-text">'+'ID:' + product.id + '</p>';
+        html += '<h5 class="card-title">' + '<b>' + product.name + '</b>' + '</h5>';
+        //html += '<p class="card-text">'+'ID:' + product.id + '</p>';
         html += '<p class="card-text">' + product.description + '</p>';
-        html += '<a href="#" class="btn btn-primary" onclick="handler(';
-        html +=product.id+'); return false;">' + product.price + '</a>';
+        html += '<a href="#" class="btn" onclick="handler(';
+        html +=product.id+'); return false;">' + '<i class="fa fa-dollar" style="font-size:16px;color:dark"></i>' + product.price + '</a>';
         html += '</div>';
         html += '</div>';
         $('#productList').append(html);

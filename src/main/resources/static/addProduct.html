@@ -168,7 +168,6 @@
         </p>
     </div>
 </footer>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 function setCookie(name){
@@ -196,9 +195,13 @@ return"";
 }
 const seller = getCookie('id');
 $( document ).ready( function() {
+    const iflogin = getCookie('iflogin');
+    if(iflogin!=1){
+     alert("請先進行登入");
+     window.location.replace("http://localhost:8080/login.html");
+     }
      console.log( "ready!" );
   });
-
 function addProduct(){
       const productName  = document.getElementById("productName").value;
       const productUrl  = document.getElementById("productUrl").value;

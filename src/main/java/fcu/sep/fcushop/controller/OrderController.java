@@ -54,4 +54,9 @@ public class OrderController {
   public String  getStrings(@PathVariable("uid") int uid, @PathVariable("state") int state) {
     return orderManager.updateOrders(uid,state);
   }
+
+  @GetMapping("/orderupdate/{id}")
+  public String  getStrings(@PathVariable("id") int id) {
+    return orderManager.updateOrders(id);
+  }
 }

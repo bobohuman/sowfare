@@ -89,4 +89,19 @@ public class OrderService {
     }
     return returnMessage;
   }
+
+  public String updateOrders(int id) {
+    String returnMessage;
+    try (Connection connection = sql2oDbHandler.getConnector().open()) {
+      String query=String.format("UPDATE `lend_things`.`order` SET STATE=3 WHERE(`id`=" + id +");");
+      System.out.println(query);
+      connection.createQuery(query, true).executeUpdate().getKey();
+      returnMessage = query + "更新成功";
+
+    } catch (Exception ex)// 除了SQLException以外之錯誤
+    {
+      returnMessage = "錯誤訊息:" + ex.getMessage();
+    }
+    return returnMessage;
+  }
 }

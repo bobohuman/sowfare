@@ -77,8 +77,8 @@
                         訂單
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/addProduct.html">買家訂單</a></li>
-                        <li><a class="dropdown-item" href="/updateProduct.html">賣家訂單</a></li>
+                        <li><a class="dropdown-item" href="/shop.html">買家訂單</a></li>
+                        <li><a class="dropdown-item" href="/order.html">賣家訂單</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -124,12 +124,27 @@
                 </div>
                 <div class="price">單價</div>
                 <div class="count">數量</div>
-                <div class="count">最大租借時長</div>
+                <div class="count">租借時長</div>
                 <div class="amount">總計</div>
-                <div class="operate">操作</div>
                 <div class="operate">買家</div>
+                <div class="operate">操作</div>
             </div>
             <div id="orderList2" style="display: none;">
+            </div>
+            <br>
+            <br>
+            <div class="item_header">
+                <div class="item_detail" id="state4" onclick="state4();">
+                    已出貨▲
+                </div>
+                <div class="price">單價</div>
+                <div class="count">數量</div>
+                <div class="count">租借時長</div>
+                <div class="amount">總計</div>
+                <div class="operate">買家</div>
+                <div class="operate">操作</div>
+            </div>
+            <div id="orderList3" style="display: none;">
             </div>
         </div>
 
@@ -172,11 +187,23 @@ var state3 = document.getElementById('state3');
 var orderList2 = document.getElementById('orderList2');
     if (orderList2.style.display === 'none') {
           orderList2.style.display = 'block';
-          state3.innerText = "已出貨▼";
+          state3.innerText = "未出貨▼";
     }
     else {
           orderList2.style.display = 'none';
-          state3.innerText = "已出貨▲";
+          state3.innerText = "未出貨▲";
+    }
+}
+function state4(){
+var state4 = document.getElementById('state4');
+var orderList3 = document.getElementById('orderList3');
+    if (orderList3.style.display === 'none') {
+          orderList3.style.display = 'block';
+          state4.innerText = "已出貨▼";
+    }
+    else {
+          orderList3.style.display = 'none';
+          state4.innerText = "已出貨▲";
     }
 }
 function setCookie(name){
@@ -207,11 +234,16 @@ return"";
     const id = getCookie('id');
     const name = getCookie('name');
     const iflogin = getCookie('iflogin');
+    if(iflogin!=1){
+     alert("請先進行登入");
+     window.location.replace("http://localhost:8080/login.html");
+     }
     let html= '<h5> welcome   ' + name + '</h5>';
     $('#welcome').append(html);
 
     getSeller('/products/seller/'+id,1);
     getSeller('/products/seller/'+id,2);
+    getSeller('/products/seller/'+id,3);
   });
 
 
@@ -224,7 +256,7 @@ return"";
         html+=' <div class="count"><span>$</span>'+product.price+'</div>';
         html+=' <div class="count">&ensp;&ensp;&ensp;'+product.time+'天</div>';
          html+='<div class="operate">';
-        html += '<a href="#" class="btn btn-primary" onclick="handler(';
+        html += '<a href="#" class="btn btn-primary" onclick="sel(';
         html +=product.id+'); return false;"> 刪除 </a>';
          html+='</div>'
         html+='</div>';
@@ -253,7 +285,10 @@ return"";
           showSellers(sellers);
           }
           if(state==2){
-          addOrders(sellers);
+          addOrders(sellers,2);
+          }
+          if(state==3){
+          addOrders(sellers,3);
           }
         })
         // Code to run if the request fails; the raw request and
@@ -270,32 +305,98 @@ return"";
         });
     }
 
-    function addOrders(products) {
+    function addOrders(products,i) {
       for ( let product of products ) {
-          getOrder('/sellerorder/'+product.id+'/2',product.imageUrl,product.name,product.price);
+          getOrder('/sellerorder/'+product.id+'/'+i,product.imageUrl,product.name,product.price,i);
       }
     }
-    function showOrders(products,i,j,k){
+    function showOrders(products,i,j,k,l){
       for ( let product of products ) {
       let html='<div class="item_header item_body">'
         html+='<div class="item_detail">';
         html +='<img src="' + i + '" width="80" height="80" alt="' + product.name + '">';
         html += '<div class="name">'+j+'</div></div>';
-        html += '<div class="price">'+k+'</div>';
+        html += '<div class="price">$'+k+'</div>';
         html+=' <div class="count">'+product.productCount+'</div>';
-        html+=' <div class="count">&ensp;&ensp;&ensp;'+product.productTime+'天</div>';
-        html+=' <div class="amount">'+k*product.productCount*product.productTime+'</div>';
-         html+='<div class="operate">';
-        html += '<a href="#" class="btn btn-primary" onclick="handler(';
-        html +=product.id+'); return false;"> 更新 </a>';
-         html+='</div>'
-         html+='<div class="operate">'+product.userid+'</div>';
-        html+='</div>';
-        $('#orderList2').append(html);
+        html+=' <div class="count">'+product.productTime+'天</div>';
+        html+=' <div class="amount">$'+k*product.productCount*product.productTime+'</div>';
+       html+='<div class="operate">'+product.userid+'</div>';
+        if(l==2){
+            html+='<div class="operate">';
+            html += '<a href="#" class="btn btn-primary" onclick="handler(';
+            html +=product.id+'); return false;">更新</a>';
+            html+='</div>'
+            html+='</div>';
+            $('#orderList2').append(html);
+        }
+        if(l==3){
+            html+='<div class="operate"></div>'
+            html+='</div>';
+            $('#orderList3').append(html);
+        }
       }
     }
+    function handler(i){
+         const targetUrl = 'orderupdate/'+i;
+        $.ajax({
+          // The URL for the request
+          url: targetUrl,
 
-    function getOrder(targetUrl,i,j,k) {
+          // Whether this is a POST or GET request
+          type: "GET",
+
+          // The type of data we expect back
+          dataType : "json",
+      })
+        // Code to run if the request succeeds (is done);
+        // The response is passed to the function
+        // Code to run if the request fails; the raw request and
+        // status codes are passed to the function
+        .fail(function( xhr, status, errorThrown ) {
+          console.log( "Sorry, there was a problem!" );
+          console.log( "Error: " + errorThrown );
+          console.log( "Status: " + status );
+          console.dir( xhr );
+        })
+        // Code to run regardless of success or failure;
+        .always(function( xhr, status ) {
+          console.log( "The request is complete!" );
+           });
+
+       alert("更新成功");
+       window.location.replace("http://localhost:8080/order.html");
+    }
+    function sel(i){
+     const targetUrl = 'delete/'+i;
+        $.ajax({
+          // The URL for the request
+          url: targetUrl,
+
+          // Whether this is a POST or GET request
+          type: "GET",
+
+          // The type of data we expect back
+          dataType : "json",
+      })
+        // Code to run if the request succeeds (is done);
+        // The response is passed to the function
+        // Code to run if the request fails; the raw request and
+        // status codes are passed to the function
+        .fail(function( xhr, status, errorThrown ) {
+          console.log( "Sorry, there was a problem!" );
+          console.log( "Error: " + errorThrown );
+          console.log( "Status: " + status );
+          console.dir( xhr );
+        })
+        // Code to run regardless of success or failure;
+        .always(function( xhr, status ) {
+          console.log( "The request is complete!" );
+           });
+
+       alert("刪除成功");
+       window.location.replace("http://localhost:8080/order.html");
+    }
+    function getOrder(targetUrl,i,j,k,l) {
       // Using the core $.ajax() method
       $.ajax({
           // The URL for the request
@@ -311,7 +412,7 @@ return"";
         // The response is passed to the function
         .done(function( json ){
           let products = json;
-          showOrders(products,i,j,k);
+          showOrders(products,i,j,k,l);
         })
         // Code to run if the request fails; the raw request and
         // status codes are passed to the function

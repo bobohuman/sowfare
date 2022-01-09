@@ -65,18 +65,6 @@ public class ProductService {
           .executeAndFetch(Product.class);
     }
   }
-  public Object getProductsCount() {
-    try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = "SELECT COUNT(*)"+" FROM `lend_things`.`product`;";
-      return connection.createQuery(query).executeScalar();
-    }
-  }
-  public Object getMaxID() {
-    try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = "SELECT max(ID)"+" FROM `lend_things`.`product`;";
-      return connection.createQuery(query).executeScalar();
-    }
-  }
   public String addProducts(String NAME,String IMAGE_URL,int PRICE,String DESCRIPTION,int STATE,int TIME,int SELLER) {
     String returnMessage;
     try (Connection connection = sql2oDbHandler.getConnector().open()) {

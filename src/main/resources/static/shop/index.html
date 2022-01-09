@@ -28,14 +28,59 @@ $(document).ready(function()
 </script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" id="home">
     <div class="container-fluid" id="top">
-        <a class="navbar-brand" href="../home.html">FCU 租借網</a>
+        <a class="navbar-brand" href="/home.html">FCU 租借網</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+            <form class="d-flex">
+                <input type="text" class="form-control" placeholder="search" aria-label="product name"
+                       aria-describedby="searchProduct" id="productKeyword">
+                <a>&nbsp;</a>
+                <button class="btn" type="button" id="searchProduct">search</button>
+            </form>
+
+
+            <ul class="navbar-nav mb-2 mb-lg-0 d-flex">
+                <li class="nav-item">
+                    <a class="nav-link" href="/login.html">登入/註冊</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/addProduct.html">上架</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/viewproduct.html">購物車</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        訂單
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/shop.html">購買清單</a></li>
+                        <li><a class="dropdown-item" href="/order.html">客戶訂單</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        類別
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a href="#product" class="dropdown-item" onclick="go1()">露營 Camping</a></li>
+                        <li><a href="#product" class="dropdown-item" onclick="go2()">滑雪 Ski</a></li>
+                        <li><a href="#product" class="dropdown-item" onclick="go3()">潛水 Diving</a></li>
+                        <li><a href="#product" class="dropdown-item" onclick="go4()">釣魚 Fishing</a></li>
+                        <li><a href="#product" class="dropdown-item" onclick="go5()">汽車&沙灘車 AUTO&ATV</a></li>
+                        <li><a href="#product" class="dropdown-item" onclick="go6()">划船 Boating</a></li>
+                    </ul>
+                </li>
+            </ul>
 
             <!--<form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -115,9 +160,9 @@ $(document).ready(function()
                             <div class="col-12 col-sm-10 col-md-10 col-lg-10 ">
                                 <div id="wb_Text5">
                                     <span style="color:#000000;font-family:微軟正黑體;font-size:16px;">要租</span>
-                                    <input id="add2" style="background-color:white; " type="button" value="＋" >
-                                    <input id="num2" name="num" type="text" value="1" >
                                     <input id="min2" style="background-color:white; " type="button" value="－" >
+                                    <input id="num2" name="num" type="text" value="1" >
+                                    <input id="add2" style="background-color:white; " type="button" value="＋" >
                                     <span style="color:#000000;font-family:微軟正黑體;font-size:16px;">天</span>
                                 </div>
                             </div>
@@ -131,9 +176,9 @@ $(document).ready(function()
                             <div class="col-12 col-sm-10 col-md-10 col-lg-10">
                                 <div id="wb_Text1">
                                     <span style="color:#000000;font-family:微軟正黑體;font-size:16px;">數量</span>
-                                    <input id="add" style="background-color:white; " type="button" value="＋" >
-                                    <input id="num" name="num" type="text" value="1" >
                                     <input id="min" style="background-color:white; " type="button" value="－" >
+                                    <input id="num" name="num" type="text" value="1" >
+                                    <input id="add" style="background-color:white; " type="button" value="＋" >
                                     <span style="color:#000000;font-family:微軟正黑體;font-size:16px;">件</span>
                                 </div>
                             </div>
@@ -169,7 +214,7 @@ $(function(){ //這裡是加減按鈕都啟用的情況
 		t.val(parseInt(t.val())+1);
 		}
 		else{
-		alert("同項商品最多五件！");
+		alert("一筆訂單最多五件喔！");
 		}
 		setTotal();
 	})
@@ -178,7 +223,7 @@ $(function(){ //這裡是加減按鈕都啟用的情況
 		t.val(parseInt(t.val())-1);
 		}
 		else{
-		alert("至少購買一件哦！");
+		alert("至少購買一件喔！");
 		}
 		setTotal();
 	})
@@ -308,12 +353,17 @@ return"";
       const time = $("#num2").val();
       const count = $("#num").val();
       const url='../orders/'+productid+'/'+count+'/'+time+'/'+id+'/1';
-      console.log(url);
-      addOrders(url);
-      //可改用json或list格式回傳
-      console.log("G");
-      alert("成功加入購物車");
-      return 0;
+      if(time<=0||time>n||count<=0||count>m){
+      alert("數量或租借天數輸入錯誤")
+      }
+      else{
+        console.log(url);
+        addOrders(url);
+        //可改用json或list格式回傳
+        console.log("G");
+        alert("成功加入購物車");
+        return 0;
+      }
     }
 
     function addOrders(targetUrl) {

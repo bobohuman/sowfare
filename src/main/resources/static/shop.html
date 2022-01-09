@@ -77,8 +77,8 @@
                         訂單
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/addProduct.html">買家訂單</a></li>
-                        <li><a class="dropdown-item" href="/updateProduct.html">賣家訂單</a></li>
+                        <li><a class="dropdown-item" href="/shop.html">買家訂單</a></li>
+                        <li><a class="dropdown-item" href="/order.html">賣家訂單</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -208,6 +208,10 @@ return"";
     const id = getCookie('id');
     const name = getCookie('name');
     const iflogin = getCookie('iflogin');
+    if(iflogin!=1){
+     alert("請先進行登入");
+     window.location.replace("http://localhost:8080/login.html");
+     }
     let html= '<h5> welcome   ' + name + '</h5>';
     $('#welcome').append(html);
 

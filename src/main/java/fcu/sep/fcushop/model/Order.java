@@ -28,7 +28,7 @@ public class Order {
   /**this is.
    *Order.
    */
-  public Order(int id,int productId,int productCount,int productTime,int userid,int state) {
+  public Order(int id, int productId, int productCount, int productTime, int userid, int state) {
     this.id = id;
     this.productId = productId;
     this.productCount = productCount;

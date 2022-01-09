@@ -146,15 +146,17 @@ public class ProductService {
    * @Service.
    */
 
-  public String updateProducts(int ID, String NAME, String IMAGE_URL, int PRICE, String DESCRIPTION) {
+  public String updateProducts(int ID, String NAME, String IMAGE_URL,
+                               int PRICE, String DESCRIPTION) {
     String returnMessage;
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = String.format("UPDATE `lend_things`.`product` SET `NAME` = '%s', `IMAGE_URL` = '%s', `PRICE` = '%d', `DESCRIPTION` = '%s' WHERE (`ID` = '%d'); ", NAME,IMAGE_URL,PRICE,DESCRIPTION);
+      String query = String.format("UPDATE `lend_things`.`product` SET `NAME` = '%s'"
+              + ", `IMAGE_URL` = '%s', `PRICE` = '%d', `DESCRIPTION` = '%s' WHERE (`ID` = '%d'"
+              + "); ", NAME, IMAGE_URL, PRICE, DESCRIPTION);
       System.out.println(query);
       connection.createQuery(query, true).executeUpdate().getKey();
       returnMessage = query + "寫入成功";
-    } catch (Exception ex)// 除了SQLException以外之錯誤
-    {
+    } catch (Exception ex) {
       returnMessage = "錯誤訊息:" + ex.getMessage();
     }
     return returnMessage;
